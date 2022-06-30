@@ -1,7 +1,9 @@
 ﻿import asyncio
 from asyncio import exceptions
 import random
+import emoji
 import requests
+from handlers import registration
 import tmp as tmp
 import wikipedia
 import psycopg2 as sq
@@ -11,7 +13,7 @@ from translate import Translator
 from create_bot import dp,bot
 from keyboards import kb_client
 from data_base import sqlite_db
-from keyboards import admin_kb
+from keyboards import admin_kb,client_kb
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text
@@ -19,6 +21,9 @@ import base64
 
 
 async def balance_test(message: types.Message):
+    if registration.IsRegistration(message.from_user.id)==False:
+        await message.answer('/reg - Вначале зарегистрируйтесь!')
+        return 
     global base, cur
     base = sq.connect(dbname='d9882ng2h7srs6', user='rixdvqeatezwpn',
                       password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6', host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
@@ -30,6 +35,32 @@ async def balance_test(message: types.Message):
     base.commit()
     await message.answer("Баланс пополнен!")
 
+async def commands_list_menu(message: types.Message):
+    if message.from_user.id != 1133903696:
+        return
+    await dp.bot.set_my_commands([
+        types.BotCommand("help", "список команд"),
+        types.BotCommand("wiki","поиск в википедии"),
+        types.BotCommand("img","рандомная картинка по запросу"),
+        types.BotCommand("gif","гифка рандомная"),
+        types.BotCommand("voice","озвучка текста"),
+        types.BotCommand("reg", "регистрация"),
+        types.BotCommand("profs","регистрация"),
+        types.BotCommand("casino","казино"),
+        types.BotCommand("balance","баланс"),
+        types.BotCommand("cybersport","игровые новости"),
+    ])
+    await message.answer('Commands list add!')
+
+async def help_command(message: types.Message):
+    help=('<b>/help</b> - список команд\n'\
+         '<b>/wiki</b> - поиск в википедии\n' \
+         '<b>/img</b> - рандомная картинка по запросу\n' \
+         '<b>/gif</b> - гифка рандомная\n' \
+         '<b>/voice</b> - озвучка текста')
+    await message.answer(help,reply_markup=client_kb.inkb_help_list_1)
+
+
 
 class FSMregistration(StatesGroup):
     id=State()
@@ -37,9 +68,20 @@ class FSMregistration(StatesGroup):
     nickname=State()
     balance=State()
 
+async  def cancel_handler(message: types.Message,state:FSMContext):
+    current_state=await state.get_state()
+    if current_state is None:
+        return
+    await state.finish()
+    await message.reply('❌ Регистрация отменена!')
+
+
 async def Start_registration(message: types.Message):
+    if registration.IsRegistration(message.from_user.id)==True:
+        await message.answer('Вы уже зарегистрированы!')
+        return
     await FSMregistration.photo.set()
-    await message.reply('Загрузи фото для профиля') 
+    await message.reply('/cancel- отмена\nЗагрузи фото для профиля:') 
 
 
 async def reg_Photo_profile_load_photo(message: types.Message,state: FSMContext):
@@ -50,7 +92,7 @@ async def reg_Photo_profile_load_photo(message: types.Message,state: FSMContext)
             tmp = base64.b64encode(image_file.read()).decode()
         data['photo']= str(tmp)
     await FSMregistration.next()
-    await message.reply('Введите ник')
+    await message.reply('/cancel- отмена\nВведите ник:')
 
 async def reg_Nickname_profile(message: types.Message,state: FSMContext):
     async with state.proxy() as data:
@@ -73,21 +115,9 @@ async def reg_Nickname_profile(message: types.Message,state: FSMContext):
 
 # @dp.message_handler(commands=['start','help'])
 async def commands_start(message: types.Message):
-    await dp.bot.set_my_commands([
-        types.BotCommand("start", "для тестов"),
-        types.BotCommand("wiki","поиск в википедии"),
-        types.BotCommand("img","рандомная картинка по запросу"),
-        types.BotCommand("gif","<Eng> гифка рандомная"),
-        types.BotCommand("voice","озвучка текста"),
-        types.BotCommand("reg", "регистрация"),
-        types.BotCommand("profs","регистрация"),
-        types.BotCommand("casino","казино"),
-        types.BotCommand("balance","баланс"),
-    ])
     # try:
     # await message.reply('Тест прошел успешно!', reply_markup=kb_client)
-    await message.reply(f'Тест прошел успешно!\nid твой: {message.from_user.id} \n id chat: {message.chat.id}', reply_markup=admin_kb.button_case_admin)
-    
+    await message.reply(f'Тест прошел успешно!\nid твой: {message.from_user.id} \n id chat: {message.chat.id}', reply_markup=admin_kb.button_case_admin)   
     #     await message.delete()
     # except:
     #   await message.reply('Напиши боту!:\n@Casino_keeper_1_bot')
@@ -96,17 +126,26 @@ async def commands_start(message: types.Message):
 #     await message.answer("✅ Регистрация прошла успешно!")
     
 async def website(message: types.Message):
+    if registration.IsRegistration(message.from_user.id)==False:
+        await message.answer('/reg - Вначале зарегистрируйтесь!')
+        return
     await message.answer('<a href="https://a62b-212-48-153-26.eu.ngrok.io">Редактировать профиль</a>',parse_mode=types.ParseMode.HTML)
     
 async def test_menu_command(message: types.Message):
     await sqlite_db.sql_read(message)
 
 async def Profile_smotr(message: types.Message):
+    if registration.IsRegistration(message.from_user.id)==False:
+        await message.answer('/reg - Вначале зарегистрируйтесь!')
+        return
     await sqlite_db.read_regist_prof(message)
 
 
 
 async  def dice_casino(message: types.Message):
+    if registration.IsRegistration(message.from_user.id)==False:
+        await message.answer('/reg - Вначале зарегистрируйтесь!')
+        return
     slot_machine_value = [
         ["bar | bar | bar"],
         ["grape | bar | bar"],
@@ -180,7 +219,10 @@ async  def dice_casino(message: types.Message):
     
 #<!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>
     #Переделать систему под State-машину
-async  def inform_wiki_pedia(message: types.Message):   
+async  def inform_wiki_pedia(message: types.Message):
+    if registration.IsRegistration(message.from_user.id)==False:
+        await message.answer('/reg - Вначале зарегистрируйтесь!')
+        return
     try:
         wikipedia.set_lang("ru")
         wiki_post=message.text[6:]
@@ -194,46 +236,54 @@ async  def inform_wiki_pedia(message: types.Message):
         try:
             push_wiki_search= wikipedia.search(f"{wiki_post}")
             await message.reply(push_wiki_search)
-            await message.reply('/wiki <Что хотите найти>\n/вики <Что хотите найти>')
+            await message.reply('/wiki [Что хотите найти]\n/вики [Что хотите найти]')
         except:
-            await message.reply('/wiki <Что хотите найти>\n/вики <Что хотите найти>')
+            await message.reply('/wiki [Что хотите найти]\n/вики [Что хотите найти]')
 async def GIF_tenor(message: types.Message):
     try:
         trans=Translator(from_lang='ru',to_lang='en')
         gifki_zapr=message.text[5:]
         # en_form=trans.translate(gifki_zapr)
-        response = requests.get(f"https://tenor.com/search/{gifki_zapr}-gifs")
-        soup=BeautifulSoup(response.text,features="html.parser")
+        tenor_api_key='AIzaSyBOcqMmqBT9JD1sLs5y7K-9Q6KRbMcci3g'
+        ckey='py teleg bot'
+        # response = requests.get(f"https://tenor.com/search/{gifki_zapr}-gifs")
+        # soup=BeautifulSoup(response.text,features="html.parser")
         gifs = []
-        soup.findAll()
-        for gif in soup.findAll('img'):
-            gifs.append(gif.get('src'))
+        # soup.findAll()
+        # for gif in soup.findAll('img'):
+        #     gifs.append(gif.get('src'))
+        response = requests.get(f"https://tenor.googleapis.com/v2/search?q={gifki_zapr}&key={tenor_api_key}&client_key={ckey}&limit=100000")
+        for view in response.json()['results']:
+            gifs.append(view['url'])
         await message.answer_animation(random.choice(gifs))
     except:
-        await message.reply('/gif <что ищите>\n/гиф <что ищите>')
-
+        await message.reply('/gif [что ищите]\n/гиф [что ищите]')
 
 async def image_yandex(message: types.Message):
     try:  
         photo=message.text[5:]
         response = requests.get(f"https://yandex.ru/images/search?text={photo}&from=tabbar")
-        soup = BeautifulSoup(response.text, features="html.parser")        
+        soup = BeautifulSoup(response.text, features="html.parser")
         images = []
         for img in soup.findAll('img'):
             images.append(img.get('src'))
         await message.answer_photo("https:"+random.choice(images))
     except:
-        await message.reply('/img <что ищите>\n/имг <что ищите>')
+        await message.reply('/img [что ищите]\n/имг [что ищите]')
 #<---------------------------------->  
 def register_handlers_client(dp: Dispatcher):
-    dp.register_message_handler(Start_registration, commands=['reg','рег'],start=None)
+    dp.register_message_handler(Start_registration, commands=['start','старт','reg','рег'],start=None)
+    dp.register_message_handler(cancel_handler, state="*", commands =['отмена','cancel'])
+    dp.register_message_handler(cancel_handler,Text(equals=['отмена','cancel'], ignore_case=True),state="*")
     dp.register_message_handler(reg_Photo_profile_load_photo, content_types=['photo'], state = FSMregistration.photo)
     dp.register_message_handler(reg_Nickname_profile, state = FSMregistration.nickname)
-    dp.register_message_handler(commands_start,commands=['start','help','старт','помощь'])
+    # dp.register_message_handler(commands_start,commands=['start','help','старт','помощь'])
+    dp.register_message_handler(help_command, commands=['help','помощь'])
     dp.register_message_handler(test_menu_command, commands=['menu','меню'])
     dp.register_message_handler(Profile_smotr, commands=['profs','проф'])
     dp.register_message_handler(website, commands=['red','ред'])
     dp.register_message_handler(dice_casino, commands=['casino','казино'])
+    dp.register_message_handler(commands_list_menu,commands=['admin_commands_add'])
     # <-----тестовая команда------>
     dp.register_message_handler(inform_wiki_pedia, commands=['wiki','вики'])
     dp.register_message_handler(image_yandex, commands=['img','имг'])

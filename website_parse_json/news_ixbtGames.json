@@ -1,0 +1,851 @@
+{
+   "data": [
+      {
+         "type": "material",
+         "id": "601139",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Blizzard сняла рекламу World of Warcraft с живыми актерами",
+            "slug": "blizzard-sniala-reklamu-world-of-warcraft-s-zhivymi-akterami",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656351660,
+            "leadText": "",
+            "commentsCount": 8,
+            "editorRating": 0.48,
+            "wholeEditorRating": 48,
+            "rating": 2,
+            "ratingDislike": 0,
+            "image": "c3/c327d752-b26c-40c1-9d96-9fec4fde1ca8.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601135",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Геймер пересчитал стоимость прокачки героя в Diablo Immortal — для максимального уровня может потребоваться более $540 тысяч",
+            "slug": "geimer-pereschital-stoimost-prokachki-geroia-v-diablo-immortal-dlia-maksimalnogo-urovnia-mozhet-potrebovatsia-bolee-540-tysiach",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656347400,
+            "leadText": "",
+            "commentsCount": 2,
+            "editorRating": 0.65,
+            "wholeEditorRating": 65,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "65/65851090-21b2-46c9-a897-421aa6c515d3.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601134",
+         "attributes": {
+            "type": 3,
+            "status": 2,
+            "title": "Вышел первый трейлер мобильной ММО по фильму «Аватар»",
+            "slug": "vyshel-pervyi-treiler-mobilnoi-mmo-po-filmu-avatar",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656345900,
+            "leadText": "",
+            "commentsCount": 0,
+            "editorRating": 0.3,
+            "wholeEditorRating": 30,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "aa/aa92f2ce-dea1-4dfd-9ea5-c1e1ffe81d4d.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601129",
+         "attributes": {
+            "type": 2,
+            "status": 2,
+            "title": "Как создать и оплатить турецкий профиль PSN — полный гайд",
+            "slug": "kak-sozdat-i-oplatit-turetskii-profil-psn-polnyi-gaid",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656342180,
+            "leadText": "",
+            "commentsCount": 5,
+            "editorRating": 1,
+            "wholeEditorRating": 100,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "37/37f74e22-f537-486d-9d1e-8dc7e00fb6d5.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601125",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "THQ Nordic представит четыре неанонсированные игры на gamescom 2022",
+            "slug": "thq-nordic-predstavit-chetyre-neanonsirovannye-igry-na-gamescom-2022",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656339540,
+            "leadText": "",
+            "commentsCount": 0,
+            "editorRating": 0.6,
+            "wholeEditorRating": 60,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "fb/fb55e506-2ee2-4350-92b7-858640583113.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601110",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Чемпионом LAN-турнира по MTG в Германии второй раз стал единственный зарегистрировавшийся игрок",
+            "slug": "chempionom-lan-turnira-po-mtg-v-germanii-vtoroi-raz-stal-edinstvennyi-zaregistrirovavshiisia-igrok",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656326640,
+            "leadText": "",
+            "commentsCount": 4,
+            "editorRating": 0.6,
+            "wholeEditorRating": 60,
+            "rating": 5,
+            "ratingDislike": 0,
+            "image": "ba/ba274a18-f0b7-4bb2-ad99-5d347e7885ce.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601106",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "В сеть утекли скриншоты из GTA VI",
+            "slug": "v-set-utekli-skrinshoty-iz-gta-vi",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656321840,
+            "leadText": "Показали возможную карту и главных героев",
+            "commentsCount": 12,
+            "editorRating": 0.85,
+            "wholeEditorRating": 85,
+            "rating": 1,
+            "ratingDislike": 1,
+            "image": "17/17227e89-7a89-4e90-ba48-3ee9d1205df2.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601098",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Инсайдер сообщил, когда анонсируют новые части FIFA и Need for Speed",
+            "slug": "insaider-soobshchil-kogda-anonsiruiut-novye-chasti-fifa-i-need-for-speed",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656315960,
+            "leadText": "",
+            "commentsCount": 1,
+            "editorRating": 0.5,
+            "wholeEditorRating": 50,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "ee/ee2d67f1-b57c-40b6-8e6c-f53cb992dfd7.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601094",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "В Steam началась распродажа серии The Banner Saga",
+            "slug": "v-steam-nachalas-rasprodazha-serii-the-banner-saga-1",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656302400,
+            "leadText": "",
+            "commentsCount": 1,
+            "editorRating": 0.5,
+            "wholeEditorRating": 50,
+            "rating": 2,
+            "ratingDislike": 0,
+            "image": "60/601bd398-4143-4a79-a088-414541e2be3b.png",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601093",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Skull & Bones получила рейтинг ESRB — вскоре могут появиться новости об игре",
+            "slug": "skull-bones-poluchila-reiting-esrb-vskore-mogut-poiavitsia-novosti-ob-igre",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656300060,
+            "leadText": "Ранее тайтл получил возрастной рейтинг в Корее и Бразилии",
+            "commentsCount": 0,
+            "editorRating": 0.5,
+            "wholeEditorRating": 50,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "4c/4c75c816-4a24-4ae7-9e2a-94d094ff3549.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601091",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Diablo Immortal может не выйти в Китае из-за оскорбления главы КНР в посте на странице игры в Weibo",
+            "slug": "diablo-immortal-mozhet-ne-vyiti-v-kitae-iz-za-oskorbleniia-glavy-knr-v-poste-na-stranitse-igry-v-weibo",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656281820,
+            "leadText": "",
+            "commentsCount": 19,
+            "editorRating": 0.7,
+            "wholeEditorRating": 70,
+            "rating": 2,
+            "ratingDislike": 0,
+            "image": "93/93d434f4-f35d-454e-bd92-822242e94130.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601089",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Фанаты Fall Guys обнаружили, что проигрыши помогают быстрее качать боевой пропуск",
+            "slug": "fanaty-fall-guys-obnaruzhili-chto-proigryshi-pomogaiut-bystree-kachat-boevoi-propusk",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656276900,
+            "leadText": "",
+            "commentsCount": 0,
+            "editorRating": 0.4,
+            "wholeEditorRating": 40,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "51/51b5df89-102e-4603-b844-66965b8639ec.png",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601084",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "СМИ: разработчики Cyberpunk 2077 могли не знать о проблемах игры на релизе из-за лжи в отчётах тестировщиков",
+            "slug": "smi-razrabotchiki-cyberpunk-2077-mogli-ne-znat-o-problemakh-igry-na-relize-iz-za-lzhi-v-otchiotakh-testirovshchikov",
+            "isMain": true,
+            "feedImageEnabled": false,
+            "publishedAt": 1656271320,
+            "leadText": "",
+            "commentsCount": 18,
+            "editorRating": 0.7,
+            "wholeEditorRating": 70,
+            "rating": 1,
+            "ratingDislike": 1,
+            "image": "e1/e1692a38-7fb4-44a8-8781-3c581dcb7473.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601076",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Monster Hunter Rise, God of War и Sekiro: Shadows Die Twice вернулись в топ-10 чарта Steam",
+            "slug": "monster-hunter-rise-god-of-war-i-sekiro-shadows-die-twice-vernulis-v-top-10-charta-steam",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656259740,
+            "leadText": "",
+            "commentsCount": 3,
+            "editorRating": 0.3,
+            "wholeEditorRating": 30,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "1b/1ba43cc5-2c50-4fc9-83ba-0827b55e82a9.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601073",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Инсайдер назвал состав июльской подборки игр в PS Plus",
+            "slug": "insaider-nazval-sostav-iiulskoi-podborki-igr-v-ps-plus",
+            "isMain": true,
+            "feedImageEnabled": false,
+            "publishedAt": 1656257460,
+            "leadText": "",
+            "commentsCount": 1,
+            "editorRating": 0.65,
+            "wholeEditorRating": 65,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "61/613ec8a6-73ef-4e9b-99c9-1860538f7f55.png",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601072",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Найден способ автоматически получить все награды за квест Клортакса на летней распродаже в Steam",
+            "slug": "naiden-sposob-avtomaticheski-poluchit-vse-nagrady-s-kvesta-klortaksa-na-letnei-rasprodazhe-v-steam",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656256620,
+            "leadText": "",
+            "commentsCount": 9,
+            "editorRating": 0.7,
+            "wholeEditorRating": 70,
+            "rating": 8,
+            "ratingDislike": 0,
+            "image": "c9/c931d34e-fb0c-47be-a3cd-117580771170.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601068",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Ваас не должен был появиться на обложке Far Cry 3 — об этом рассказал актер, сыгравший героя",
+            "slug": "vaas-ne-dolzhen-byl-poiavitsia-na-oblozhke-far-cry-3-ob-etom-rasskazal-akter-sygravshii-geroia",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656253320,
+            "leadText": "",
+            "commentsCount": 6,
+            "editorRating": 0.65,
+            "wholeEditorRating": 65,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "f6/f6bc1f99-6f48-4e4c-bcb1-6aa4f1508e1b.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601064",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Разработчики Fallout: London рассказали, когда планируют выпустить мод",
+            "slug": "razrabotchiki-fallout-london-rasskazali-kogda-planiruiut-vypustit-mod",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656246540,
+            "leadText": "",
+            "commentsCount": 6,
+            "editorRating": 0.5,
+            "wholeEditorRating": 50,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "b0/b0109d25-130d-4f2d-8a90-e4aa7122acf6.png",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601056",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "World of Warcraft: Wrath of the Lich King Classic будет сложнее оригинала",
+            "slug": "world-of-warcraft-wrath-of-the-lich-king-classic-budet-slozhnee-originala",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656238320,
+            "leadText": "",
+            "commentsCount": 2,
+            "editorRating": 0.7,
+            "wholeEditorRating": 70,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "0d/0dbee9a4-35d7-46c2-96ca-8ac40a9a7af4.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601050",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Количество игроков в Fall Guys достигло 20 млн человек спустя двое суток после того, как игра стала бесплатной",
+            "slug": "kolichestvo-igrokov-v-fall-guys-dostiglo-20-mln-chelovek-spustia-dvoe-sutok-posle-togo-kak-igra-stala-besplatnoi",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656229140,
+            "leadText": "",
+            "commentsCount": 1,
+            "editorRating": 0.4,
+            "wholeEditorRating": 40,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "08/08ec9d90-c0dd-421d-bb79-3cced905ccb2.webp",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601049",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Хидэо Кодзима планировал сделать игру, похожую на сериал «Пацаны»",
+            "slug": "khideo-kodzima-planiroval-sdelat-igru-pokhozhuiu-na-serial-patsany",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656228420,
+            "leadText": "На главную роль Кодзима хотел взять Мадса Миккельсена",
+            "commentsCount": 1,
+            "editorRating": 0.75,
+            "wholeEditorRating": 75,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "7c/7ca6d92a-e931-4f92-9997-16983c46b39d.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601046",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Представлена портативная консоль, которая обеспечит 60 FPS в Cyberpunk 2077",
+            "slug": "predstavlena-portativnaia-konsol-kotoraia-obespechit-60-fps-v-cyberpunk-2077",
+            "isMain": false,
+            "feedImageEnabled": true,
+            "publishedAt": 1656193200,
+            "leadText": "",
+            "commentsCount": 7,
+            "editorRating": 0.4,
+            "wholeEditorRating": 40,
+            "rating": 2,
+            "ratingDislike": 0,
+            "image": "f5/f5ab72f4-309a-417d-bb77-042b40614445.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601032",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Моддер вдвое увеличил FPS в Cyberpunk 2077 — он заменил DLSS на FSR 2.0",
+            "slug": "modder-vdvoe-uvelichil-fps-v-cyberpunk-2077-on-zamenil-dlss-na-fsr-2-0",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656175140,
+            "leadText": "",
+            "commentsCount": 10,
+            "editorRating": 0.15,
+            "wholeEditorRating": 15,
+            "rating": 6,
+            "ratingDislike": 0,
+            "image": "b6/b6cc80e9-5dc7-48cb-8904-14271148cd64.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601022",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Продюсер Final Fantasy XVI подтвердил, что в игре будет только английская озвучка с британским акцентом",
+            "slug": "prodiuser-final-fantasy-xvi-podtverdil-chto-v-igre-budet-tolko-angliiskaia-ozvuchka-s-britanskim-aktsentom",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656164700,
+            "leadText": "",
+            "commentsCount": 0,
+            "editorRating": 0.4,
+            "wholeEditorRating": 40,
+            "rating": 1,
+            "ratingDislike": 0,
+            "image": "87/878770bf-4801-4088-a02f-5f0467e1ca35.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      },
+      {
+         "type": "material",
+         "id": "601020",
+         "attributes": {
+            "type": 1,
+            "status": 2,
+            "title": "Создатель серии Dark Souls заявил, что FromSoftware работает над несколькими новыми проектами",
+            "slug": "sozdatel-serii-dark-souls-zaiavil-chto-fromsoftware-rabotaet-nad-neskolkimi-novymi-proektami",
+            "isMain": false,
+            "feedImageEnabled": false,
+            "publishedAt": 1656161880,
+            "leadText": "",
+            "commentsCount": 4,
+            "editorRating": 0.5,
+            "wholeEditorRating": 50,
+            "rating": 0,
+            "ratingDislike": 0,
+            "image": "f8/f861851f-2a33-43fe-8dc4-f3da2b03c54d.jpg",
+            "externalLink": null,
+            "isCommentingDisabled": false
+         },
+         "relationships": {
+            "author": {
+               "data": null
+            },
+            "mainTag": {
+               "data": {
+                  "type": "tag",
+                  "id": "6974"
+               }
+            }
+         }
+      }
+   ],
+   "included": [
+      {
+         "type": "tag",
+         "id": "6974",
+         "attributes": {
+            "slug": "games",
+            "name": "Игры",
+            "isFilter": true,
+            "icon": null
+         },
+         "relationships": {
+            "discipline": {
+               "data": null
+            }
+         }
+      }
+   ],
+   "meta": {
+      "totalCount": null,
+      "pageLimit": 25,
+      "pageOffset": 25
+   }
+}
