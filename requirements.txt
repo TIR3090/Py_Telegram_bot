@@ -1,7 +1,6 @@
 ﻿aiogram
 asyncio
 psycopg2
-json
 os
 random
 requests
