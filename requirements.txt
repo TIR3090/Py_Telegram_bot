@@ -6,7 +6,5 @@ emoji
 wikipedia
 bs4
 translate
-datetime
-hashlib
 youtube_search
 gtts
