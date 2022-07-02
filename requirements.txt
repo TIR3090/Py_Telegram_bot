@@ -1,7 +1,6 @@
 ﻿aiogram
 asyncio
 psycopg2
-base64
 json
 os
 random
