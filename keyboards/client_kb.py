@@ -1,6 +1,5 @@
 ﻿from aiogram import Dispatcher,types
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton, InlineKeyboardMarkup,InlineKeyboardButton
-from aiogram.utils import callback_data
 
 b1=KeyboardButton('🎰')
 b2=KeyboardButton('📜')

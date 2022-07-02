@@ -1,6 +1,5 @@
 ﻿import hashlib
-import os,json,string
-import random
+import json,string
 import requests
 from aiogram import types,Dispatcher
 from create_bot import dp,bot

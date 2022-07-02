@@ -8,7 +8,6 @@ import psycopg2 as sq
 # import sqlite3 as sq
 from create_bot import dp,bot
 from aiogram import types
-import base64
 
 def sql_start():
     global base, cur

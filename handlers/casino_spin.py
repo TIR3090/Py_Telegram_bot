@@ -1,9 +1,6 @@
 ﻿import asyncio
-from asyncio import exceptions
-import random
 import psycopg2 as sq
 from aiogram import types, Dispatcher
-from create_bot import dp,bot
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text

@@ -3,8 +3,6 @@ import time
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
-import asyncio
-import aiohttp
 
 def cybersport_parse():
         response = requests.get(f"https://www.cybersport.ru/tags/games")

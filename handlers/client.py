@@ -1,17 +1,12 @@
-﻿import asyncio
-from asyncio import exceptions
-import random
-import emoji
+﻿import random
 import requests
 from handlers import registration
-import tmp as tmp
 import wikipedia
 import psycopg2 as sq
 from aiogram import types, Dispatcher
 from bs4 import BeautifulSoup
 from translate import Translator
 from create_bot import dp,bot
-from keyboards import kb_client
 from data_base import sqlite_db
 from keyboards import admin_kb,client_kb
 from aiogram.dispatcher import FSMContext

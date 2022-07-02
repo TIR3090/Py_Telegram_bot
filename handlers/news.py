@@ -1,6 +1,5 @@
 ﻿import json
 import datetime
-from create_bot import dp, bot
 from aiogram import types, Dispatcher
 from aiogram.utils.markdown import hbold,hunderline,hcode,hlink
 from website_parse_json import cybersport_parse
