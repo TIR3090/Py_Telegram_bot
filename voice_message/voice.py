@@ -1,12 +1,11 @@
 ﻿from aiogram import types, Dispatcher
 import gtts
-from create_bot import dp, bot
-from aiogram.types import ContentType
+from create_bot import bot
 
 
 async def Voice_message(message: types.Message):
-    me=await bot.get_me()
     try:
+        me=await bot.get_me()
         voice_text=message.text[7:]
         voice_bot=gtts.gTTS(f'{voice_text}',lang="ru")
         voice_bot.save('voice.mp3')
