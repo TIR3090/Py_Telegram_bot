@@ -1,7 +1,6 @@
 ﻿from aiogram import types, Dispatcher
 import gtts
 from create_bot import dp, bot
-import speech_recognition as v_t
 from aiogram.types import ContentType
 
 
