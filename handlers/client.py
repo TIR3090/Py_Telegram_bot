@@ -142,80 +142,80 @@ async def Profile_smotr(message: types.Message):
 
 
 
-async  def dice_casino(message: types.Message):
-    if registration.IsRegistration(message.from_user.id)==False:
-        await message.answer('/reg - Вначале зарегистрируйтесь!')
-        return
-    slot_machine_value = [
-        ["bar | bar | bar"],
-        ["grape | bar | bar"],
-        ["lemon | bar | bar"],
-        ["seven | bar | bar"],
-        ["bar | grape | bar"],
-        ["grape | grape | bar"],
-        ["lemon | grape | bar"],
-        ["seven | grape | bar"],
-        ["bar | lemon | bar"],
-        ["grape | lemon | bar"],
-        ["lemon | lemon | bar"],
-        ["seven | lemon | bar"],
-        ["bar | seven | bar"],
-        ["grape | seven | bar"],
-        ["lemon | seven | bar"],
-        ["seven | seven | bar"],
-        ["bar | bar | grape"],
-        ["grape | bar | grape"],
-        ["lemon | bar | grape"],
-        ["seven | bar | grape"],
-        ["bar | grape | grape"],
-        ["grape | grape | grape"],
-        ["lemon | grape | grape"],
-        ["seven | grape | grape"],
-        ["bar | lemon | grape"],
-        ["grape | lemon | grape"],
-        ["lemon | lemon | grape"],
-        ["seven | lemon | grape"],
-        ["bar | seven | grape"],
-        ["grape | seven | grape"],
-        ["lemon | seven | grape"],
-        ["seven | seven | grape"],
-        ["bar | bar | lemon"],
-        ["grape | bar | lemon"],
-        ["lemon | bar | lemon"],
-        ["seven | bar | lemon"],
-        ["bar | grape | lemon"],
-        ["grape | grape | lemon"],
-        ["lemon | grape | lemon"],
-        ["seven | grape | lemon"],
-        ["bar | lemon | lemon"],
-        ["grape | lemon | lemon"],
-        ["lemon | lemon | lemon"],
-        ["seven | lemon | lemon"],
-        ["bar | seven | lemon"],
-        ["grape | seven | lemon"],
-        ["lemon | seven | lemon"],
-        ["seven | seven | lemon"],
-        ["bar | bar | seven"],
-        ["grape | bar | seven"],
-        ["lemon | bar | seven"],
-        ["seven | bar | seven"],
-        ["bar | grape | seven"],
-        ["grape | grape | seven"],
-        ["lemon | grape | seven"],
-        ["seven | grape | seven"],
-        ["bar | lemon | seven"],
-        ["grape | lemon | seven"],
-        ["lemon | lemon | seven"],
-        ["seven | lemon | seven"],
-        ["bar | seven | seven"],
-        ["grape | seven | seven"],
-        ["lemon | seven | seven"],
-        ["seven | seven | seven"],
-    ]
-    casino = await message.answer_dice('🎰')
-    print(slot_machine_value[casino.dice.value-1])
-    await asyncio.sleep(2)
-    await message.reply(slot_machine_value[casino.dice.value-1])
+# async  def dice_casino(message: types.Message):
+#     if registration.IsRegistration(message.from_user.id)==False:
+#         await message.answer('/reg - Вначале зарегистрируйтесь!')
+#         return
+#     slot_machine_value = [
+#         ["bar | bar | bar"],
+#         ["grape | bar | bar"],
+#         ["lemon | bar | bar"],
+#         ["seven | bar | bar"],
+#         ["bar | grape | bar"],
+#         ["grape | grape | bar"],
+#         ["lemon | grape | bar"],
+#         ["seven | grape | bar"],
+#         ["bar | lemon | bar"],
+#         ["grape | lemon | bar"],
+#         ["lemon | lemon | bar"],
+#         ["seven | lemon | bar"],
+#         ["bar | seven | bar"],
+#         ["grape | seven | bar"],
+#         ["lemon | seven | bar"],
+#         ["seven | seven | bar"],
+#         ["bar | bar | grape"],
+#         ["grape | bar | grape"],
+#         ["lemon | bar | grape"],
+#         ["seven | bar | grape"],
+#         ["bar | grape | grape"],
+#         ["grape | grape | grape"],
+#         ["lemon | grape | grape"],
+#         ["seven | grape | grape"],
+#         ["bar | lemon | grape"],
+#         ["grape | lemon | grape"],
+#         ["lemon | lemon | grape"],
+#         ["seven | lemon | grape"],
+#         ["bar | seven | grape"],
+#         ["grape | seven | grape"],
+#         ["lemon | seven | grape"],
+#         ["seven | seven | grape"],
+#         ["bar | bar | lemon"],
+#         ["grape | bar | lemon"],
+#         ["lemon | bar | lemon"],
+#         ["seven | bar | lemon"],
+#         ["bar | grape | lemon"],
+#         ["grape | grape | lemon"],
+#         ["lemon | grape | lemon"],
+#         ["seven | grape | lemon"],
+#         ["bar | lemon | lemon"],
+#         ["grape | lemon | lemon"],
+#         ["lemon | lemon | lemon"],
+#         ["seven | lemon | lemon"],
+#         ["bar | seven | lemon"],
+#         ["grape | seven | lemon"],
+#         ["lemon | seven | lemon"],
+#         ["seven | seven | lemon"],
+#         ["bar | bar | seven"],
+#         ["grape | bar | seven"],
+#         ["lemon | bar | seven"],
+#         ["seven | bar | seven"],
+#         ["bar | grape | seven"],
+#         ["grape | grape | seven"],
+#         ["lemon | grape | seven"],
+#         ["seven | grape | seven"],
+#         ["bar | lemon | seven"],
+#         ["grape | lemon | seven"],
+#         ["lemon | lemon | seven"],
+#         ["seven | lemon | seven"],
+#         ["bar | seven | seven"],
+#         ["grape | seven | seven"],
+#         ["lemon | seven | seven"],
+#         ["seven | seven | seven"],
+#     ]
+#     casino = await message.answer_dice('🎰')
+#     print(slot_machine_value[casino.dice.value-1])
+#     await asyncio.sleep(2)
+#     await message.reply(slot_machine_value[casino.dice.value-1])
     
 #<!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>
     #Переделать систему под State-машину
@@ -282,7 +282,7 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(test_menu_command, commands=['menu','меню'])
     dp.register_message_handler(Profile_smotr, commands=['profs','проф'])
     dp.register_message_handler(website, commands=['red','ред'])
-    dp.register_message_handler(dice_casino, commands=['casino','казино'])
+    # dp.register_message_handler(dice_casino, commands=['casino','казино'])
     dp.register_message_handler(commands_list_menu,commands=['admin_commands_add'])
     # <-----тестовая команда------>
     dp.register_message_handler(inform_wiki_pedia, commands=['wiki','вики'])

@@ -47,29 +47,44 @@ import aiohttp
 # # # ixbtGames_parse()
 # # test()
 
-def tenor():
-    tenor_api_key='AIzaSyBOcqMmqBT9JD1sLs5y7K-9Q6KRbMcci3g'
-    ckey='py teleg bot'
-    # response = requests.get(f"https://tenor.com/search/{gifki_zapr}-gifs")
-    response = requests.get(f"https://tenor.googleapis.com/v2/search?q=папич&key={tenor_api_key}&client_key={ckey}&limit=100000")
-    soup=BeautifulSoup(response.text,features="html.parser")    
-    
-    # if response.status_code == 200:
-    #         # load the GIFs using the urls for the smaller GIF sizes
-    #     with open('test.json','w') as file:
-    #         top_8gifs = json.dump(response.json(),file,indent=3, ensure_ascii=False)
-    # else:
-    #     top_8gifs = None
-    # gifs = []
-    # print(soup)
-    # for gif in soup.findAll('img'):
-    #     gifs.append(gif.get('src'))
-        
-    # with open('test.json') as file:
-    news_list_cybersport=response.json()
-    gifs = []
-    for view in news_list_cybersport['results']:
-        # news_cybersport=f"{(view['data'][1]['id'])}\n"
-        gifs.append(view['url'])
-    print(random.choice(gifs))
-tenor()
+# def tenor():
+#     tenor_api_key='AIzaSyBOcqMmqBT9JD1sLs5y7K-9Q6KRbMcci3g'
+#     ckey='py teleg bot'
+#     # response = requests.get(f"https://tenor.com/search/{gifki_zapr}-gifs")
+#     response = requests.get(f"https://tenor.googleapis.com/v2/search?q=папич&key={tenor_api_key}&client_key={ckey}&limit=100000")
+#     soup=BeautifulSoup(response.text,features="html.parser")    
+# 
+#     # if response.status_code == 200:
+#     #         # load the GIFs using the urls for the smaller GIF sizes
+#     #     with open('test.json','w') as file:
+#     #         top_8gifs = json.dump(response.json(),file,indent=3, ensure_ascii=False)
+#     # else:
+#     #     top_8gifs = None
+#     # gifs = []
+#     # print(soup)
+#     # for gif in soup.findAll('img'):
+#     #     gifs.append(gif.get('src'))
+# 
+#     # with open('test.json') as file:
+#     news_list_cybersport=response.json()
+#     gifs = []
+#     for view in news_list_cybersport['results']:
+#         # news_cybersport=f"{(view['data'][1]['id'])}\n"
+#         gifs.append(view['url'])
+#     print(random.choice(gifs))
+# tenor()
+
+def test():
+    response = requests.get(f"https://yandex.ru/images/search?from=tabbar&text=аниме")
+    soup = BeautifulSoup(response.text, features="html.parser")
+    # images = []
+    # for img in soup.findAll('img'):
+    #     images.append(img.get('src'))
+    data_bem=soup.findAll('div',class_="serp-controller__content")
+    for article in soup.findAll('img'):
+        article_title = article.get('src')
+        article_id = article_title.split('-')
+        print(article_id[1:2])
+
+
+test()
