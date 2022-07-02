@@ -1,8 +1,6 @@
 ﻿aiogram
 asyncio
 psycopg2
-os
-random
 requests
 emoji
 tmp
@@ -13,4 +11,3 @@ datetime
 hashlib
 youtube_search
 gtts
-time
