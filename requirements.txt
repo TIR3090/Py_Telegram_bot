@@ -3,7 +3,6 @@ asyncio
 psycopg2
 requests
 emoji
-tmp
 wikipedia
 bs4
 translate
