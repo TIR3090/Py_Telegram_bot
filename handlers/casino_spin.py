@@ -20,6 +20,16 @@ async  def cancel_handler(message: types.Message,state:FSMContext):
 
 
 async def Start_casino(message: types.Message,state: FSMContext):
+    global base, cur
+    base = sq.connect(dbname='d9882ng2h7srs6', user='rixdvqeatezwpn',
+                      password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6', host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
+    cur=base.cursor()
+    cur.execute(f"SELECT balance FROM profile WHERE id='{message.from_user.id}'")
+    for test in cur.fetchall():
+        balance_v_bd=float(test[0])
+    if balance_v_bd<=0:
+        await message.answer('Недостаточно средст!')
+        return
     if registration.IsRegistration(message.from_user.id)==False:
         await message.answer('/reg - Вначале зарегистрируйтесь!')
         return
@@ -40,10 +50,6 @@ async def dice_casino(message: types.Message,state: FSMContext):
         if registration.IsRegistration(message.from_user.id)==False:
             await message.answer('/reg - Вначале зарегистрируйтесь!')
             return
-        global base, cur
-        base = sq.connect(dbname='d9882ng2h7srs6', user='rixdvqeatezwpn',
-                          password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6', host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
-        cur=base.cursor()
         cur.execute(f"SELECT balance FROM profile WHERE id='{message.from_user.id}'")
         for test in cur.fetchall():
             balance_v_bd=float(test[0])

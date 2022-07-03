@@ -1,6 +1,6 @@
 ﻿import json
 import time
-from datetime import datetime
+import datetime
 import random
 
 import requests
@@ -75,16 +75,29 @@ import aiohttp
 # tenor()
 
 def test():
-    response = requests.get(f"https://yandex.ru/images/search?from=tabbar&text=аниме")
-    soup = BeautifulSoup(response.text, features="html.parser")
+    response = requests.get(f"https://www.cybersport.ru/api/materials?page%5Boffset%5D=0&page%5Blimit%5D=100&filter%5BtagIds%5D=6974&sort=internalRating")
+    # soup = BeautifulSoup(response.text, features="html.parser")
+    # print(response.json()['data'])
+    # news_cybersport_id=[]
+    # news_cybersport_title=[]
+    # news_cybersport_slug=[]
+    # news_cybersport_time=[]
+    news_cybersport_info={}
+    for view in response.json()['data']:
+        # news_cybersport_id.append(view['id'])
+        # news_cybersport_title.append(view['attributes']['title'])
+        # news_cybersport_slug.append(view['attributes']['slug'])
+        # news_cybersport_time.append(view['attributes']['publishedAt'])
+    # print('https://www.cybersport.ru/tags/games/{}')
+        news_cybersport_info[view['id']]={
+            'title': view['attributes']['title'],
+            'slug': f"https://www.cybersport.ru/tags/games/{view['attributes']['slug']}",
+            'time': view['attributes']['publishedAt']
+        }
+    for k,v in sorted(news_cybersport_info.items(), key=lambda item: item[1]['time'])[-5:]:    
+        print(v['title'],v['slug'],v['time'])
     # images = []
     # for img in soup.findAll('img'):
     #     images.append(img.get('src'))
-    data_bem=soup.findAll('div',class_="serp-controller__content")
-    for article in soup.findAll('img'):
-        article_title = article.get('src')
-        article_id = article_title.split('-')
-        print(article_id[1:2])
-
 
 test()
