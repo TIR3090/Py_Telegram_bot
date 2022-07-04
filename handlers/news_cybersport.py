@@ -2,6 +2,7 @@
 import datetime
 import requests
 from aiogram import types, Dispatcher
+from aiogram.dispatcher.filters import Text
 from aiogram.utils.markdown import hbold,hunderline,hcode,hlink
 from website_parse_json import cybersport_parse
 from keyboards import client_kb
@@ -85,6 +86,7 @@ async def ten_newns_cybersports_games(callback: types.CallbackQuery):
         
 def register_handlers_news(dp: Dispatcher):
     dp.register_message_handler(website_cybersport, commands=['cybersport','киберспорт'])
+    dp.register_message_handler(website_cybersport,Text(equals=['📰 news','📰 новости']))
     dp.register_callback_query_handler(five_newns_cybersports_games,text='5_newns_cybersports_games')
     dp.register_callback_query_handler(all_newns_cybersports_games,text='all_newns_cybersports_games')
     dp.register_callback_query_handler(ten_newns_cybersports_games,text='10_newns_cybersports_games')

@@ -159,6 +159,7 @@ async def dice_casino(message: types.Message,state: FSMContext):
 
 def register_handlers_casino(dp: Dispatcher):
     dp.register_message_handler(Start_casino, commands=['casino','казино'],start=None)
+    dp.register_message_handler(Start_casino,Text(equals=['🎰 казино','🎰 casino']))
     dp.register_message_handler(cancel_handler, state="*", commands =['отмена','cancel'])
     dp.register_message_handler(cancel_handler,Text(equals=['отмена','cancel'], ignore_case=True),state="*")
     dp.register_message_handler(dice_casino, state = FSMcasino.stavka)

@@ -1,13 +1,12 @@
 ﻿from aiogram import Dispatcher,types
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton, InlineKeyboardMarkup,InlineKeyboardButton
 
-b1=KeyboardButton('🎰')
-b2=KeyboardButton('📜')
-b3=KeyboardButton('📈')
+kb_casino=KeyboardButton('🎰 казино')
+kb_news=KeyboardButton('📰 новости')
+# b3=KeyboardButton('📈')
 
-kb_client=ReplyKeyboardMarkup(resize_keyboard=True)
-
-kb_client.add(b1).add(b2).add(b3)
+kb_menu=ReplyKeyboardMarkup(resize_keyboard=True)
+kb_menu.add(kb_casino).add(kb_news)
 
 
 news_cybersports_games_kolv=InlineKeyboardMarkup(row_width=3).add(InlineKeyboardButton(text='5 новостей',callback_data='5_newns_cybersports_games'),InlineKeyboardButton(text='All',callback_data='all_newns_cybersports_games'),InlineKeyboardButton(text='10 новостей',callback_data='10_newns_cybersports_games'))

@@ -54,7 +54,7 @@ async def help_command(message: types.Message):
          '<b>/gif</b> - гифка рандомная\n' \
          '<b>/voice</b> - озвучка текста')
     await message.answer(help,reply_markup=client_kb.inkb_help_list_1)
-
+    await message.answer('Меню:',reply_markup=client_kb.kb_menu)
 
 
 class FSMregistration(StatesGroup):
@@ -93,7 +93,7 @@ async def reg_Nickname_profile(message: types.Message,state: FSMContext):
     async with state.proxy() as data:
         data['nickname']=message.text
         data['balance']=0
-    await message.answer("✅ Регистрация прошла успешно!")
+    await message.answer("✅ Регистрация прошла успешно!",reply_markup=client_kb.kb_menu)
 
     await sqlite_db.write_regist_prof(state)
 
