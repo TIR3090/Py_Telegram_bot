@@ -27,7 +27,7 @@ async def sql_add_command(state):
 
 async def write_regist_prof(state):
     async with state.proxy() as data:
-        cur.execute('INSERT INTO profile VALUES (%s,%s,%s,%s)',tuple(data.values()))
+        cur.execute('INSERT INTO profile VALUES (%s,%s,%s,%s,%s)',tuple(data.values()))
         print(tuple(data.values()))
         base.commit()
 
