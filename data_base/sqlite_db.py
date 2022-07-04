@@ -17,7 +17,7 @@ def sql_start():
     if base:
         print('Data base connected OK!')
         cur.execute('CREATE TABLE IF NOT EXISTS menu(img TEXT, name TEXT PRIMARY KEY, description TEXT, price TEXT)')
-        cur.execute('CREATE TABLE IF NOT EXISTS profile(id TEXT PRIMARY KEY,avatar TEXT, nickname TEXT,balance DOUBLE PRECISION)')
+        cur.execute('CREATE TABLE IF NOT EXISTS profile(id TEXT PRIMARY KEY,avatar TEXT, nickname TEXT,balance DOUBLE PRECISION,bonus TIMESTAMP)')
         base.commit()
         
 async def sql_add_command(state):

@@ -1,4 +1,5 @@
-﻿import random
+﻿import datetime
+import random
 import requests
 from handlers import registration
 import wikipedia
@@ -83,6 +84,8 @@ class FSMregistration(StatesGroup):
     photo=State()
     nickname=State()
     balance=State()
+    bonus=State()
+
 
 async  def cancel_handler(message: types.Message,state:FSMContext):
     current_state=await state.get_state()
@@ -114,6 +117,7 @@ async def reg_Nickname_profile(message: types.Message,state: FSMContext):
     async with state.proxy() as data:
         data['nickname']=message.text
         data['balance']=0
+        data['bonus']=datetime.datetime.now()
     await message.answer("✅ Регистрация прошла успешно!",reply_markup=client_kb.kb_menu)
 
     await sqlite_db.write_regist_prof(state)
