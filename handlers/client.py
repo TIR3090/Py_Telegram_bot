@@ -25,12 +25,16 @@ async def balance_test(message: types.Message):
     base = sq.connect(dbname='d9882ng2h7srs6', user='rixdvqeatezwpn',
                       password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6', host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
     cur=base.cursor()
-    cur.execute(f"SELECT balance FROM profile WHERE id='{message.from_user.id}'")
+    cur.execute(f"SELECT balance,bonus FROM profile WHERE id='{message.from_user.id}'")
     for test in cur.fetchall():
-        balance_v_bd=int(test[0])+1000
-    cur.execute(f"UPDATE profile SET balance='{balance_v_bd}' WHERE id='{message.from_user.id}'")
-    base.commit()
-    await message.answer("Баланс пополнен!")
+        if datetime.datetime.now()<test[1]:
+            await message.answer('Бонус еще не доступен')
+        else:
+            balance_v_bd=int(test[0])+1000
+            bonus_poluch = datetime.datetime.now() + datetime.timedelta(minutes=90)
+            cur.execute(f"UPDATE profile SET balance='{balance_v_bd}',bonus='{bonus_poluch}' WHERE id='{message.from_user.id}'")
+            base.commit()
+            await message.answer("Баланс пополнен!")
 
 async def commands_list_menu(message: types.Message):
     if message.from_user.id != 1133903696:
