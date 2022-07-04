@@ -12,6 +12,7 @@ from keyboards import admin_kb,client_kb
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text
+from handlers import news_cybersport,news_ixbt
 import base64
 
 
@@ -36,6 +37,7 @@ async def commands_list_menu(message: types.Message):
     await dp.bot.set_my_commands([
         types.BotCommand("help", "список команд"),
         types.BotCommand("wiki","поиск в википедии"),
+        types.BotCommand("news","сайты с новостями"),
         types.BotCommand("img","рандомная картинка по запросу"),
         types.BotCommand("gif","гифка рандомная"),
         types.BotCommand("voice","озвучка текста"),
@@ -44,17 +46,36 @@ async def commands_list_menu(message: types.Message):
         types.BotCommand("casino","казино"),
         types.BotCommand("balance","баланс"),
         types.BotCommand("cybersport","игровые новости"),
+        types.BotCommand("ixbt","игровые новости"),
     ])
     await message.answer('Commands list add!')
 
 async def help_command(message: types.Message):
-    help=('<b>/help</b> - список команд\n'\
+    help=('<code>1 страница:</code>\n'\
+          '<b>/help</b> - список команд\n'\
          '<b>/wiki</b> - поиск в википедии\n' \
          '<b>/img</b> - рандомная картинка по запросу\n' \
          '<b>/gif</b> - гифка рандомная\n' \
          '<b>/voice</b> - озвучка текста')
     await message.answer(help,reply_markup=client_kb.inkb_help_list_1)
     await message.answer('Меню:',reply_markup=client_kb.kb_menu)
+
+async def choosing_a_website_with_news(message: types.Message):
+    await message.answer('Выберите сайт:',reply_markup=client_kb.news_selection)
+    
+    
+    
+async def website_news_cybersports_games(callback: types.CallbackQuery):
+    await callback.message.delete()
+    await callback.message.answer(f'<b>Сybersport</b>\nВыберите кол-во новостей:',reply_markup=client_kb.news_cybersports_games_kolv)
+    await callback.answer()
+
+
+
+async def website_news_ixbt_games(callback: types.CallbackQuery):
+    await callback.message.delete()
+    await callback.message.answer(f'<b>ixbt</b>\nВыберите кол-во новостей:',reply_markup=client_kb.news_ixbt_games_kolv)
+    await callback.answer()
 
 
 class FSMregistration(StatesGroup):
@@ -276,9 +297,15 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(help_command, commands=['help','помощь'])
     dp.register_message_handler(test_menu_command, commands=['menu','меню'])
     dp.register_message_handler(Profile_smotr, commands=['profs','проф'])
+    dp.register_message_handler(choosing_a_website_with_news, commands=['news','новости'])
+    dp.register_message_handler(choosing_a_website_with_news,Text(equals=['📰 news','📰 новости']))
     dp.register_message_handler(website, commands=['red','ред'])
     # dp.register_message_handler(dice_casino, commands=['casino','казино'])
     dp.register_message_handler(commands_list_menu,commands=['admin_commands_add'])
+    # <---------Новости----------->
+    dp.register_callback_query_handler(website_news_cybersports_games,text='cybersports_news')
+    dp.register_callback_query_handler(website_news_ixbt_games,text='ixbt_news')
+    #<---------------------------->
     # <-----тестовая команда------>
     dp.register_message_handler(inform_wiki_pedia, commands=['wiki','вики'])
     dp.register_message_handler(image_yandex, commands=['img','имг'])
