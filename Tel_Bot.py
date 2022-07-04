@@ -2,7 +2,7 @@ from aiogram.utils import executor
 import voice_message
 from create_bot import dp, bot
 from aiogram import types, Dispatcher
-from handlers import client, admin, other , news , casino_spin
+from handlers import client, admin, other , news_cybersport , casino_spin
 from data_base import sqlite_db
 from voice_message import voice
 from keyboards import client_kb
@@ -11,7 +11,7 @@ import psycopg2 as sq
 
 
 voice.register_handlers_voice(dp)
-news.register_handlers_news(dp)
+news_cybersport.register_handlers_news(dp)
 casino_spin.register_handlers_casino(dp)
 client.register_handlers_client(dp)
 client_kb.register_callback_query(dp)
