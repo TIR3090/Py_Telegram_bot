@@ -17,7 +17,7 @@ from handlers import news_cybersport,news_ixbt
 import base64
 
 
-async def balance_test(message: types.Message):
+async def bonus(message: types.Message):
     if registration.IsRegistration(message.from_user.id)==False:
         await message.answer('/reg - Вначале зарегистрируйтесь!')
         return 
@@ -26,11 +26,13 @@ async def balance_test(message: types.Message):
                       password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6', host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
     cur=base.cursor()
     cur.execute(f"SELECT balance,bonus FROM profile WHERE id='{message.from_user.id}'")
-    for test in cur.fetchall():
-        if datetime.datetime.now()<test[1]:
-            await message.answer('Бонус еще не доступен')
+    for inform_v_bd in cur.fetchall():
+        if datetime.datetime.now()<inform_v_bd[1]:
+            ost_time_bonus=inform_v_bd[1].replace(microsecond=0)-datetime.datetime.now().replace(microsecond=0)
+            await message.answer(f'Бонус будет доступен через:\n⌚ {ost_time_bonus}')
         else:
-            balance_v_bd=int(test[0])+1000
+            bonus_nachisl=random.uniform(1000,15000)
+            balance_v_bd=int(inform_v_bd[0])+round(bonus_nachisl,3)
             bonus_poluch = datetime.datetime.now() + datetime.timedelta(minutes=90)
             cur.execute(f"UPDATE profile SET balance='{balance_v_bd}',bonus='{bonus_poluch}' WHERE id='{message.from_user.id}'")
             base.commit()
@@ -49,7 +51,7 @@ async def commands_list_menu(message: types.Message):
         types.BotCommand("reg", "регистрация"),
         types.BotCommand("profs","регистрация"),
         types.BotCommand("casino","казино"),
-        types.BotCommand("balance","баланс"),
+        types.BotCommand("bonus","бонус 1000 на счет"),
         types.BotCommand("cybersport","игровые новости"),
         types.BotCommand("ixbt","игровые новости"),
     ])
@@ -319,5 +321,5 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(image_yandex, commands=['img','имг'])
     dp.register_message_handler(GIF_tenor, commands=['gif','гиф'])
     #<---------------------------->
-    dp.register_message_handler(balance_test, commands=['balance','баланс'])
+    dp.register_message_handler(bonus, commands=['bonus','бонус'])
 # dp.register_message_handler()
