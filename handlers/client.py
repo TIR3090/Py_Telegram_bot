@@ -36,7 +36,7 @@ async def bonus(message: types.Message):
             bonus_poluch = datetime.datetime.now() + datetime.timedelta(minutes=90)
             cur.execute(f"UPDATE profile SET balance='{balance_v_bd}',bonus='{bonus_poluch}' WHERE id='{message.from_user.id}'")
             base.commit()
-            await message.answer("Баланс пополнен!")
+            await message.answer(f"Бонус получен!\n💸 {round(bonus_nachisl,3)} ¥\n⏱ {bonus_poluch.strftime('%H:%M')}")
 
 async def commands_list_menu(message: types.Message):
     if message.from_user.id != 1133903696:
