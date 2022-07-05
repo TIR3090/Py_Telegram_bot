@@ -40,7 +40,7 @@ async def sql_read(message: types.Message):
 async  def read_regist_prof(message: types.Message):
     cur.execute('SELECT * FROM profile')
     for test in cur.fetchall():
-        await message.answer(f'<------Профиль------>\n\nid: {test[0]}\nНик: {test[2]}\n\n<---------------------------->')
+        await message.answer(f'[~~~Профиль~~~]\n\nid: {test[0]}\nНик: {test[2]}\n\n[~~~~~~~~~~~~]')
         # with open("encoding.jpg", "wb") as new_file:
         #     new_file.write(base64.decodebytes(test[1]))
         
