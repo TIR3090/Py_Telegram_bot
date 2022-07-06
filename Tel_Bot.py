@@ -1,3 +1,5 @@
+import asyncio
+
 from aiogram.utils import executor
 import voice_message
 from create_bot import dp, bot
@@ -45,5 +47,9 @@ async def commands_list_menu(dp):
         types.BotCommand("@C_K_1_bot gif","поиск в гифки"),
     ])
 
-
-executor.start_polling(dp, skip_updates=True,on_startup=on_startup)
+if __name__ =='__main__':
+    # <---------Заготовка под изменение крипт----------->
+    # loop=asyncio.get_event_loop()
+    # loop.create_task()# тут в () указать название класса def для запустка цикла
+    #<-------------------------------------------------->
+    executor.start_polling(dp, skip_updates=True,on_startup=on_startup)

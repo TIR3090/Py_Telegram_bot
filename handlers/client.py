@@ -52,7 +52,7 @@ async def commands_list_menu(message: types.Message):
         types.BotCommand("gif","гифка рандомная"),
         types.BotCommand("voice","озвучка текста"),
         types.BotCommand("reg", "регистрация"),
-        types.BotCommand("profs","регистрация"),
+        types.BotCommand("profile","посмотреть профиль"),
         types.BotCommand("casino","казино"),
         types.BotCommand("bonus","бонус 1000 на счет"),
         types.BotCommand("cybersport","игровые новости"),
@@ -309,20 +309,23 @@ def register_handlers_client(dp: Dispatcher):
     # dp.register_message_handler(commands_start,commands=['start','help','старт','помощь'])
     dp.register_message_handler(help_command, commands=['help','помощь'])
     dp.register_message_handler(test_menu_command, commands=['menu','меню'])
-    dp.register_message_handler(Profile_smotr, commands=['profs','проф'])
+    dp.register_message_handler(Profile_smotr, commands=['profile','профиль'])
     dp.register_message_handler(choosing_a_website_with_news, commands=['news','новости'])
     dp.register_message_handler(choosing_a_website_with_news,Text(equals=['📰 news','📰 новости']))
     dp.register_message_handler(website, commands=['red','ред'])
     # dp.register_message_handler(dice_casino, commands=['casino','казино'])
     dp.register_message_handler(commands_list_menu,commands=['admin_commands_add'])
+    
     # <---------Новости----------->
     dp.register_callback_query_handler(website_news_cybersports_games,text='cybersports_news')
     dp.register_callback_query_handler(website_news_ixbt_games,text='ixbt_news')
     #<---------------------------->
+    
     # <-----тестовая команда------>
     dp.register_message_handler(inform_wiki_pedia, commands=['wiki','вики'])
     dp.register_message_handler(image_yandex, commands=['img','имг'])
     dp.register_message_handler(GIF_tenor, commands=['gif','гиф'])
     #<---------------------------->
+    
     dp.register_message_handler(bonus, commands=['bonus','бонус'])
 # dp.register_message_handler()

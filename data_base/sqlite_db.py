@@ -18,6 +18,7 @@ def sql_start():
         print('Data base connected OK!')
         cur.execute('CREATE TABLE IF NOT EXISTS menu(img TEXT, name TEXT PRIMARY KEY, description TEXT, price TEXT)')
         cur.execute('CREATE TABLE IF NOT EXISTS profile(id TEXT PRIMARY KEY,avatar TEXT, nickname TEXT,balance DOUBLE PRECISION,bonus TIMESTAMP)')
+        cur.execute('CREATE TABLE IF NOT EXISTS cripts(id TEXT PRIMARY KEY,cript TEXT,usd DOUBLE PRECISION,chy DOUBLE PRECISION,rub DOUBLE PRECISION)')
         base.commit()
         
 async def sql_add_command(state):
@@ -38,9 +39,15 @@ async def sql_read(message: types.Message):
         await message.answer_photo(ret[0], f'{ret[1]}\nОписание: {ret[2]}\nЦена {ret[-1]}')
         
 async  def read_regist_prof(message: types.Message):
-    cur.execute('SELECT * FROM profile')
-    for test in cur.fetchall():
-        await message.answer(f'[~~~Профиль~~~]\n\nid: {test[0]}\nНик: {test[2]}\n\n[~~~~~~~~~~~~]')
-        # with open("encoding.jpg", "wb") as new_file:
-        #     new_file.write(base64.decodebytes(test[1]))
-        
+    if message.from_user.id != 1133903696:
+        cur.execute(f"SELECT * FROM profile WHERE id='{message.from_user.id}'")
+        for test in cur.fetchall():
+            await message.answer(f'[~~~Профиль~~~]\n\nid: {test[0]}\nНик: {test[2]}\n\n[~~~~~~~~~~~~]')
+            # with open("encoding.jpg", "wb") as new_file:
+            #     new_file.write(base64.decodebytes(test[1]))
+    else:
+        cur.execute('SELECT * FROM profile')
+        for test in cur.fetchall():
+            await message.answer(f'[~~~Профиль~~~]\n\nid: {test[0]}\nНик: {test[2]}\n\n[~~~~~~~~~~~~]')
+            # with open("encoding.jpg", "wb") as new_file:
+            #     new_file.write(base64.decodebytes(test[1]))
