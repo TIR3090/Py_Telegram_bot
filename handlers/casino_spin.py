@@ -33,8 +33,15 @@ async def Start_casino(message: types.Message,state: FSMContext):
     if registration.IsRegistration(message.from_user.id)==False:
         await message.answer('/reg - Вначале зарегистрируйтесь!')
         return
-    await message.reply('/cancel- отмена')
+    await message.reply('/cancel- отмена\n'
+                        'Сделайте ставку:')
     await FSMcasino.stavka.set()
+    await asyncio.sleep(30)
+    current_state=await state.get_state()
+    if current_state is None:
+        return
+    await state.finish()
+    await message.reply('Время ожидания вышло!')
     # await asyncio.sleep(10)
     # wait_stavka=await state.get_data()
     # if wait_stavka.get('stavka')==None:

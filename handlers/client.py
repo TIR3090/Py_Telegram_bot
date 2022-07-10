@@ -1,4 +1,5 @@
-﻿import datetime
+﻿import asyncio
+import datetime
 import random
 import requests
 from handlers import registration
@@ -59,7 +60,7 @@ async def commands_list_menu(message: types.Message):
         types.BotCommand("ixbt","игровые новости"),
     ])
     await message.answer('Commands list add!')
-
+    
 async def help_command(message: types.Message):
     help=('<code>1 страница:</code>\n'\
           '<b>/help</b> - список команд\n'\
@@ -104,13 +105,18 @@ async  def cancel_handler(message: types.Message,state:FSMContext):
     await message.reply('❌ Регистрация отменена!')
 
 
-async def Start_registration(message: types.Message):
+async def Start_registration(message: types.Message,state:FSMContext):
     if registration.IsRegistration(message.from_user.id)==True:
         await message.answer('Вы уже зарегистрированы!')
         return
     await FSMregistration.photo.set()
-    await message.reply('/cancel- отмена\nЗагрузи фото для профиля:') 
-
+    await message.reply('/cancel- отмена\nЗагрузи фото для профиля:')
+    await asyncio.sleep(90)
+    current_state=await state.get_state()
+    if current_state is None:
+        return
+    await state.finish()
+    await message.reply('Время ожидания вышло!')
 
 async def reg_Photo_profile_load_photo(message: types.Message,state: FSMContext):
     async with state.proxy() as data:
