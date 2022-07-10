@@ -28,7 +28,7 @@ other.register_handlers_other(dp)
 async def on_startup(_):
     me=await bot.get_me()
     print('\033[33m' +'[~] Bot '+'\033[0m'+'\033[39m' + me.first_name +'\033[0m' + '\033[33m'+' start!'+'\033[0m')
-    # await bot.send_message(chat_id=1133903696,text='[~] Bot start!')
+    await bot.send_message(chat_id=1133903696,text='[~] Bot start!')
     sqlite_db.sql_start()
     
     
