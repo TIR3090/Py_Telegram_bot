@@ -39,21 +39,36 @@ async def inline_handler(query: types.InlineQuery):
     else:
         text_anime=text[6:]
         if text_anime=='':
-            text_anime='Shadows House'
-        response=requests.get(f'https://kodikapi.com/search?token=84079b04f2b985c868f4ef75d5c66b2a&types=anime,anime-serial&with_page_links=true&with_material_data=true&title={text_anime}/translations')
-        links=response.json()['results']
-        articles=[types.InlineQueryResultArticle(
-            id = link['id'],
-            title=f'{link["translation"]["title"]}',
-            description=f'{link["title"]}\n{link["title_orig"]}',
-            url=link['link'],
-            hide_url=True,
-            thumb_url=f'{link["screenshots"][0]}',
-            input_message_content=types.InputTextMessageContent(
-                message_text=f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}")
-    
-        ) for link in links]
-        await query.answer(articles,cache_time=60,is_personal=True)
+            # text_anime='Shadows House'
+            response=requests.get(f'https://kodikapi.com/list?token=84079b04f2b985c868f4ef75d5c66b2a&types=anime,anime-serial&with_page_links=true&with_material_data=true/translations')
+            links=response.json()['results']
+            articles=[types.InlineQueryResultArticle(
+                id = link['id'],
+                title=f'{link["translation"]["title"]}',
+                description=f'{link["title"]}\n{link["title_orig"]}',
+                url=link['link'],
+                hide_url=True,
+                thumb_url=f'{link["screenshots"][0]}',
+                input_message_content=types.InputTextMessageContent(
+                    message_text=f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}")
+
+            ) for link in links]
+            await query.answer(articles,cache_time=60,is_personal=True)
+        else:
+            response=requests.get(f'https://kodikapi.com/search?token=84079b04f2b985c868f4ef75d5c66b2a&types=anime,anime-serial&with_page_links=true&with_material_data=true&title={text_anime}/translations')
+            links=response.json()['results']
+            articles=[types.InlineQueryResultArticle(
+                id = link['id'],
+                title=f'{link["translation"]["title"]}',
+                description=f'{link["title"]}\n{link["title_orig"]}',
+                url=link['link'],
+                hide_url=True,
+                thumb_url=f'{link["screenshots"][0]}',
+                input_message_content=types.InputTextMessageContent(
+                    message_text=f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}")
+        
+            ) for link in links]
+            await query.answer(articles,cache_time=60,is_personal=True)
             
 # @dp.inline_handler()
 # async def inline_handler(query: types.InlineQuery):
