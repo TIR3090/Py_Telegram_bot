@@ -7,7 +7,6 @@ from aiogram.dispatcher.filters import Text
 from handlers import registration
 
 
-balance_casino_spin=10000
 class FSMcasino(StatesGroup):
     stavka=State()
 
@@ -21,12 +20,14 @@ async  def cancel_handler(message: types.Message,state:FSMContext):
 
 async def Start_casino(message: types.Message,state: FSMContext):
     global base, cur
-    base = sq.connect(dbname='d9882ng2h7srs6', user='rixdvqeatezwpn',
-                      password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6', host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
+    base = sq.connect(dbname='d9882ng2h7srs6',
+                      user='rixdvqeatezwpn',
+                      password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
+                      host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
     cur=base.cursor()
-    cur.execute(f"SELECT balance FROM profile WHERE id='{message.from_user.id}'")
-    for test in cur.fetchall():
-        balance_v_bd=float(test[0])
+    cur.execute(f"SELECT balance_chy FROM profile WHERE id='{message.from_user.id}'")
+    for information in cur.fetchall():
+        balance_v_bd=float(information[0])
     if balance_v_bd<=0:
         await message.answer('Недостаточно средст!')
         return
@@ -57,9 +58,9 @@ async def dice_casino(message: types.Message,state: FSMContext):
         if registration.IsRegistration(message.from_user.id)==False:
             await message.answer('/reg - Вначале зарегистрируйтесь!')
             return
-        cur.execute(f"SELECT balance FROM profile WHERE id='{message.from_user.id}'")
-        for test in cur.fetchall():
-            balance_v_bd=float(test[0])
+        cur.execute(f"SELECT balance_chy FROM profile WHERE id='{message.from_user.id}'")
+        for information in cur.fetchall():
+            balance_v_bd=float(information[0])
         if float(stavka_sdel.replace(',','.'))<=0:
             await message.answer('Ставка ниже 0 !?')
             return 
@@ -140,23 +141,23 @@ async def dice_casino(message: types.Message,state: FSMContext):
             itog=(balance_v_bd-float(stavka_sdel.replace(',','.')))+stavka_ucht
             await asyncio.sleep(2)
             # await message.reply(slot_machine_value[casino.dice.value-1])
-            await message.reply(f'Ставка: {stavka_sdel}\nВы выиграли: {stavka_ucht}\nБаланс: {itog}')
-            cur.execute(f"UPDATE profile SET balance='{itog}' WHERE id='{message.from_user.id}'")
+            await message.reply(f'Ставка: {stavka_sdel}\nВы выиграли: {stavka_ucht}\nБаланс: {round(itog,3)}')
+            cur.execute(f"UPDATE profile SET balance_chy='{round(itog,3)}' WHERE id='{message.from_user.id}'")
             base.commit()
         elif slot_machine_value[casino.dice.value-1]==slot_machine_value[63]:
             stavka_ucht=float(stavka_sdel.replace(',','.')) * 3.5
             itog=(balance_v_bd-float(stavka_sdel.replace(',','.')))+stavka_ucht
             await asyncio.sleep(2)
             # await message.reply(slot_machine_value[casino.dice.value-1])
-            await message.reply(f'Ставка: {stavka_sdel}\nВы выиграли: {stavka_ucht}\nБаланс: {itog}')
-            cur.execute(f"UPDATE profile SET balance='{itog}' WHERE id='{message.from_user.id}'")
+            await message.reply(f'Ставка: {stavka_sdel}\nВы выиграли: {stavka_ucht}\nБаланс: {round(itog,3)}')
+            cur.execute(f"UPDATE profile SET balance_chy='{round(itog,3)}' WHERE id='{message.from_user.id}'")
             base.commit()
         else:
             itog=balance_v_bd-float(stavka_sdel.replace(',','.'))
             await asyncio.sleep(2)
             # await message.reply(slot_machine_value[casino.dice.value-1])
-            await message.reply(f'Вы проиграли: {stavka_sdel}\nБаланс: {itog}')
-            cur.execute(f"UPDATE profile SET balance='{itog}' WHERE id='{message.from_user.id}'")
+            await message.reply(f'Вы проиграли: {stavka_sdel}\nБаланс: {round(itog,3)}')
+            cur.execute(f"UPDATE profile SET balance_chy='{round(itog,3)}' WHERE id='{message.from_user.id}'")
             base.commit()
         await state.finish()
     else:
@@ -165,7 +166,7 @@ async def dice_casino(message: types.Message,state: FSMContext):
 
 
 def register_handlers_casino(dp: Dispatcher):
-    dp.register_message_handler(Start_casino, commands=['casino','казино'],start=None)
+    dp.register_message_handler(Start_casino, commands=['casino','казино'],state=None)
     dp.register_message_handler(Start_casino,Text(equals=['🎰 казино','🎰 casino']))
     dp.register_message_handler(cancel_handler, state="*", commands =['отмена','cancel'])
     dp.register_message_handler(cancel_handler,Text(equals=['отмена','cancel'], ignore_case=True),state="*")

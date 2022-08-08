@@ -6,6 +6,7 @@
 import psycopg2 as sq
 # import mysql.connector
 # import sqlite3 as sq
+from config import DEVELOPER
 from create_bot import dp,bot
 from aiogram import types
 
@@ -16,9 +17,35 @@ def sql_start():
     cur=base.cursor()
     if base:
         print('Data base connected OK!')
-        cur.execute('CREATE TABLE IF NOT EXISTS menu(img TEXT, name TEXT PRIMARY KEY, description TEXT, price TEXT)')
-        cur.execute('CREATE TABLE IF NOT EXISTS profile(id TEXT PRIMARY KEY,avatar TEXT, nickname TEXT,balance DOUBLE PRECISION DEFAULT 0,bonus TIMESTAMP)')
-        cur.execute('CREATE TABLE IF NOT EXISTS cripts(id TEXT PRIMARY KEY,cript TEXT,usd DOUBLE PRECISION,chy DOUBLE PRECISION)')
+        cur.execute('CREATE TABLE IF NOT EXISTS menu(img TEXT,'
+                    ' name TEXT PRIMARY KEY,'
+                    ' description TEXT,'
+                    ' price TEXT)')
+        
+        
+        cur.execute('CREATE TABLE IF NOT EXISTS profile(id TEXT PRIMARY KEY,'
+                    'avatar TEXT,'
+                    'avatar_info TEXT,'
+                    'first_name TEXT,'
+                    'nickname TEXT,'
+                    'privilege TEXT DEFAULT 0,'
+                    'balance_usd DOUBLE PRECISION DEFAULT 0,'
+                    'balance_chy DOUBLE PRECISION DEFAULT 0,'
+                    'btc_usd DOUBLE PRECISION DEFAULT 0,'
+                    'price_buy_btc_usd DOUBLE PRECISION DEFAULT 0,'
+                    'btc_chy DOUBLE PRECISION DEFAULT 0,'
+                    'price_buy_btc_chy DOUBLE PRECISION DEFAULT 0,'
+                    'eth_usd DOUBLE PRECISION DEFAULT 0,'
+                    'price_buy_eth_usd DOUBLE PRECISION DEFAULT 0,'
+                    'eth_chy DOUBLE PRECISION DEFAULT 0,'
+                    'price_buy_eth_chy DOUBLE PRECISION DEFAULT 0,'
+                    'bonus_chy TIMESTAMP)')
+        
+        
+        cur.execute('CREATE TABLE IF NOT EXISTS cripts(id TEXT PRIMARY KEY,'
+                    'cript TEXT,'
+                    'usd DOUBLE PRECISION,'
+                    'chy DOUBLE PRECISION)')
         base.commit()
         
 async def sql_add_command(state):
@@ -28,7 +55,7 @@ async def sql_add_command(state):
 
 async def write_regist_prof(state):
     async with state.proxy() as data:
-        cur.execute('INSERT INTO profile VALUES (%s,%s,%s,%s,%s)',tuple(data.values()))
+        cur.execute('INSERT INTO profile(id,avatar,avatar_info,first_name,nickname,bonus_chy) VALUES (%s,%s,%s,%s,%s,%s)',tuple(data.values()))
         # print(tuple(data.values()))
         base.commit()
 
@@ -39,15 +66,37 @@ async def sql_read(message: types.Message):
         await message.answer_photo(ret[0], f'{ret[1]}\nОписание: {ret[2]}\nЦена {ret[-1]}')
         
 async  def read_regist_prof(message: types.Message):
-    if message.from_user.id != 1133903696:
+    if message.from_user.id != DEVELOPER:
         cur.execute(f"SELECT * FROM profile WHERE id='{message.from_user.id}'")
-        for test in cur.fetchall():
-            await message.answer(f'[~~~Профиль~~~]\n\nid: {test[0]}\nНик: {test[2]}\n\n[~~~~~~~~~~~~]')
+        for information in cur.fetchall():
+            await message.answer_photo(information[2],
+                                 f'[~~~Профиль~~~]\n\n'
+                                 f'🎫 id: {information[0]}\n'
+                                 f'💻 Ник: {information[4]}\n'
+                                 f'💴 ¥: {information[6]}\n'
+                                 f'💵 $: {information[7]}\n\n'
+                                 f'[=====-Cripts-=====]\n\n'
+                                 f'💼 ₿-¥: {"{:0.9f}".format(information[10])}\n'
+                                 f'💼 ₿-$: {"{:0.9f}".format(information[8])}\n\n'
+                                 f'💼 Ξ-¥: {"{:0.9f}".format(information[14])}\n'
+                                 f'💼 Ξ-$: {"{:0.9f}".format(information[12])}\n\n'
+                                 f'[~~~~~~~~~~~~~]')
             # with open("encoding.jpg", "wb") as new_file:
             #     new_file.write(base64.decodebytes(test[1]))
     else:
         cur.execute('SELECT * FROM profile')
-        for test in cur.fetchall():
-            await message.answer(f'[~~~Профиль~~~]\n\nid: {test[0]}\nНик: {test[2]}\n\n[~~~~~~~~~~~~]')
+        for information in cur.fetchall():
+            await message.answer_photo(information[2],
+                                 f'[~~~Профиль~~~]\n\n'
+                                 f'🎫 id: {information[0]}\n'
+                                 f'💻 Ник: {information[4]}\n'
+                                 f'💴 ¥: {information[6]}\n'
+                                 f'💵 $: {information[7]}\n\n'
+                                 f'[=====-Cripts-=====]\n\n'
+                                 f'💼 ₿-¥: {"{:0.9f}".format(information[10])}\n'
+                                 f'💼 ₿-$: {"{:0.9f}".format(information[8])}\n\n'
+                                 f'💼 Ξ-¥: {"{:0.9f}".format(information[14])}\n'
+                                 f'💼 Ξ-$: {"{:0.9f}".format(information[12])}\n\n'
+                                 f'[~~~~~~~~~~~~~]')
             # with open("encoding.jpg", "wb") as new_file:
             #     new_file.write(base64.decodebytes(test[1]))

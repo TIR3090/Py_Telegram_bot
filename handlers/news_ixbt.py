@@ -6,12 +6,12 @@ from aiogram.dispatcher.filters import Text
 from aiogram.utils.markdown import hbold,hunderline,hcode,hlink
 from bs4 import BeautifulSoup
 from website_parse_json import cybersport_parse
-from keyboards import client_kb
+from keyboards import client_kb,news_kb
 
 
 
 async def website_ixbt(message: types.Message):
-    await message.answer(f'<b>ixbt</b>\nВыберите кол-во новостей:',reply_markup=client_kb.news_ixbt_games_kolv)
+    await message.answer(f'<b>ixbt</b>\nВыберите кол-во новостей:',reply_markup=news_kb.news_ixbt_games_kolv)
 
 
 
@@ -86,9 +86,18 @@ async def ten_news_ixbt_games(callback: types.CallbackQuery):
     await callback.answer()
 
 
+
+async def website_news_ixbt_games(callback: types.CallbackQuery):
+    await callback.message.delete()
+    await callback.message.answer(f'<b>ixbt</b>\nВыберите кол-во новостей:',reply_markup=news_kb.news_ixbt_games_kolv)
+    await callback.answer()
+
+
+
 def register_handlers_news(dp: Dispatcher):
     dp.register_message_handler(website_ixbt, commands=['ixbt','иксбт'])
     # dp.register_message_handler(website_cybersport,Text(equals=['📰 news','📰 новости']))
     dp.register_callback_query_handler(five_news_ixbt_games,text='5_newns_ixbt_games')
     dp.register_callback_query_handler(all_news_ixbt_games,text='all_newns_ixbt_games')
     dp.register_callback_query_handler(ten_news_ixbt_games,text='10_newns_ixbt_games')
+    dp.register_callback_query_handler(website_news_ixbt_games,text='ixbt_news')

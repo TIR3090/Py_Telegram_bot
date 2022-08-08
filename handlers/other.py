@@ -45,12 +45,12 @@ async def inline_handler(query: types.InlineQuery):
             articles=[types.InlineQueryResultArticle(
                 id = link['id'],
                 title=f'{link["translation"]["title"]}',
-                description=f'{link["title"]}\n{link["title_orig"]}',
+                description=f'{link["title"]}\n{link["title_orig"]}' if link['type']=='anime' else f'Серия - {link["last_episode"]}\n{link["title"]}\n{link["title_orig"]}',
                 url=link['link'],
                 hide_url=True,
                 thumb_url=f'{link["screenshots"][0]}',
                 input_message_content=types.InputTextMessageContent(
-                    message_text=f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}")
+                    message_text= f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}" if link['type']=='anime' else f"{hlink(link['title'],link['link'])}\nКоличество серий: {hbold(link['last_episode'])}\nозвучка от: {hbold(link['translation']['title'])}",disable_web_page_preview=True)
 
             ) for link in links]
             await query.answer(articles,cache_time=60,is_personal=True)
@@ -60,12 +60,12 @@ async def inline_handler(query: types.InlineQuery):
             articles=[types.InlineQueryResultArticle(
                 id = link['id'],
                 title=f'{link["translation"]["title"]}',
-                description=f'{link["title"]}\n{link["title_orig"]}',
+                description=f'{link["title"]}\n{link["title_orig"]}' if link['type']=='anime' else f'Серий - {link["last_episode"]}\n{link["title"]}\n{link["title_orig"]}',
                 url=link['link'],
                 hide_url=True,
                 thumb_url=f'{link["screenshots"][0]}',
                 input_message_content=types.InputTextMessageContent(
-                    message_text=f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}")
+                    message_text=f"{hlink(link['title'],link['link'])}\nозвучка от: {hbold(link['translation']['title'])}" if link['type']=='anime' else f"{hlink(link['title'],link['link'])}\nКоличество серий: {hbold(link['last_episode'])}\nозвучка от: {hbold(link['translation']['title'])}" ,disable_web_page_preview=True)
         
             ) for link in links]
             await query.answer(articles,cache_time=60,is_personal=True)
@@ -114,9 +114,9 @@ async def inline_handler(query: types.InlineQuery):
 async def echo_send(message: types.Message):
     if{i.lower().translate(str.maketrans('','',string.punctuation)) for i in message.text.split(' ')} \
             .intersection(set(json.load(open('clear/clear.json'))))!=set():
-        await message.reply('Ильдар лох!')
+        await message.reply('Delete!')
         await message.delete()
-    print(f'{message.from_user.first_name} написал: {message.text}\n')
+    # print(f'{message.from_user.first_name} написал: {message.text}\n')
     # print(message.text)
     # if message.text =='Привет':
     # # await message.answer(message.text)

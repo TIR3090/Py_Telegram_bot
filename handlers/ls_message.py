@@ -14,7 +14,7 @@ class FSMmessage_ls(StatesGroup):
     message_v_ls=State()
     message_id=State()
 
-async  def cancel_handler(message: types.Message,state:FSMContext):
+async  def cancel_handler_mess(message: types.Message,state:FSMContext):
     current_state=await state.get_state()
     if current_state is None:
         return
@@ -61,14 +61,14 @@ async def ls_message_id_polzovatel(message: types.Message,state: FSMContext):
             await message.answer('Попробуйте еще раз!')
             return
         else:
-            await bot.send_message(polzovatel_id[0],answer_v_ls)
-            await bot.send_message(message.from_user.id,f"✅ {polzovatel_id[2]}, дотаставлено!")
+            await bot.send_message(polzovatel_id[0],f'От {message.from_user.first_name}:\n{answer_v_ls}')
+            await message.answer(f"✅ {polzovatel_id[3]}, дотаставлено!")
     elif id_poluchatelya.lower()=='all' or id_poluchatelya.lower()=='все' or id_poluchatelya.lower()=='всем':
         cur.execute(f"SELECT * FROM profile")
-        for test in cur.fetchall():
-            if test[0]!= f'{message.from_user.id}':
-                await bot.send_message(test[0],answer_v_ls)
-                await message.answer(f"✅ {test[2]}, дотаставлено!")
+        for information in cur.fetchall():
+            if information[0]!= f'{message.from_user.id}':
+                await bot.send_message(information[0],f'От {message.from_user.first_name}:\n{answer_v_ls}')
+                await message.answer(f"✅ {information[3]}, дотаставлено!")
     else:
         await message.answer(f"Введи id или all(всем)!")
         return 
@@ -77,7 +77,7 @@ async def ls_message_id_polzovatel(message: types.Message,state: FSMContext):
 
 def register_handlers_ls_message(dp: Dispatcher):
     dp.register_message_handler(start_ls_message, commands=['mess','месс'], state=None)
-    dp.register_message_handler(cancel_handler, state="*", commands =['отмена','cancel'])
-    dp.register_message_handler(cancel_handler,Text(equals=['отмена','cancel'], ignore_case=True),state="*")
+    dp.register_message_handler(cancel_handler_mess, state="*", commands =['отмена','cancel'])
+    dp.register_message_handler(cancel_handler_mess,Text(equals=['отмена','cancel'], ignore_case=True),state="*")
     dp.register_message_handler(ls_message_text,state = FSMmessage_ls.message_v_ls)
     dp.register_message_handler(ls_message_id_polzovatel, state = FSMmessage_ls.message_id)

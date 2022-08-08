@@ -1,6 +1,6 @@
 ﻿from aiogram import Bot,    types
 from aiogram.dispatcher import Dispatcher
-from config import TOKEN
+from config import TOKEN,DEVELOPER
 import os,json,string
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
