@@ -50,7 +50,7 @@ async def cripts_buy(message: types.Message):
 
 def register_handlers_cripts_list_menu(dp: Dispatcher):
     dp.register_message_handler(cripts_menu,commands=['cripts_menu','криптс_меню'])
-    dp.register_message_handler(cripts_menu,Text(equals=['📈 сryptocurrency','📈 криптовалюта']))
+    dp.register_message_handler(cripts_menu,Text(equals=['📈 сryptocurrency','📈 криптовалюта','📊 курс крипты']))
     dp.register_message_handler(cripts_sell,commands=['cripts_sell','крипту_продать'])
     dp.register_message_handler(cripts_sell,Text(equals=['📤 sell','📤 продать']))
     dp.register_message_handler(cripts_buy,commands=['cripts_buy','крипту_купить'])
