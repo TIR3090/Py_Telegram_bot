@@ -5,12 +5,13 @@ from translate import Translator
 from bs4 import BeautifulSoup
 import asyncio
 from create_bot import dp, bot
-import psycopg2 as sq
+# import psycopg2 as sq
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text
 from handlers import registration
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton, InlineKeyboardMarkup,InlineKeyboardButton
+import aiosqlite as aoisq
 
 
 
@@ -39,13 +40,15 @@ async  def cancel_handler_translate_p2p_usd(callback: types.CallbackQuery,state:
 async def Start_translate_p2p_usd(callback: types.CallbackQuery,state: FSMContext):
     await callback.message.delete()
     global base, cur
-    base = sq.connect(dbname='d9882ng2h7srs6',
-                      user='rixdvqeatezwpn',
-                      password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
-                      host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
-    cur=base.cursor()
-    cur.execute(f"SELECT * FROM profile WHERE id ='{callback.data.split('_')[3]}'")
-    for info_bd in cur.fetchall():
+    # base = sq.connect(dbname='d9882ng2h7srs6',
+    #                   user='rixdvqeatezwpn',
+    #                   password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
+    #                   host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
+    # cur=base.cursor()
+    base =await aoisq.connect("data_base/data_casino_keeper.db")
+    cur=await base.cursor()
+    await cur.execute(f"SELECT * FROM profile WHERE id ='{callback.data.split('_')[3]}'")
+    for info_bd in await cur.fetchall():
         nick=info_bd[4]
         balance_usd_chet=info_bd[6]
     inform_text=f'<b>{nick}</b> на счету:\n' \
@@ -79,12 +82,12 @@ async def translate_p2p_usd(message: types.Message,state: FSMContext):
     chat_id=p2p_get.get('chat_id')
     from_p2p=p2p_get.get('from_p2p')
     for_p2p=p2p_get.get('for_p2p')
-    if registration.IsRegistration(message.from_user.id)==False:
+    if await registration.IsRegistration(message.from_user.id)==False:
         await message.answer('/reg - Вначале зарегистрируйтесь!')
         return
-    cur.execute(f"SELECT * FROM profile")
+    await cur.execute(f"SELECT * FROM profile")
     json_info={}
-    for info_bd in cur.fetchall():
+    for info_bd in await cur.fetchall():
         json_info[info_bd[0]]={
             'id':info_bd[0],
             'avatar':info_bd[1],
@@ -113,9 +116,9 @@ async def translate_p2p_usd(message: types.Message,state: FSMContext):
             return
         from_user=json_info[from_p2p]['balance_usd']-float(p2p.replace(',','.'))
         for_user=json_info[for_p2p]['balance_usd']+float(p2p.replace(',','.'))
-        cur.execute(f"UPDATE profile SET balance_usd='{round(from_user,3)}' WHERE id='{from_p2p}'")
-        cur.execute(f"UPDATE profile SET balance_usd='{round(for_user,3)}' WHERE id='{for_p2p}'")
-        base.commit()
+        await cur.execute(f"UPDATE profile SET balance_usd='{round(from_user,3)}' WHERE id='{from_p2p}'")
+        await cur.execute(f"UPDATE profile SET balance_usd='{round(for_user,3)}' WHERE id='{for_p2p}'")
+        await base.commit()
         await message.answer(f'✅ Перевод {json_info[for_p2p]["nickname"]} уcпешно выполнен!')
         await bot.send_message(chat_id=json_info[for_p2p]["id"],text=f'💸 {json_info[from_p2p]["nickname"]} перевел вам:\n\n➕ 💵: {float(p2p.replace(",","."))} $')
         await bot.send_message(chat_id=json_info[from_p2p]["id"],text=f'💸 Вы перевели {json_info[for_p2p]["nickname"]} :\n\n➖ 💵: {float(p2p.replace(",","."))} $')

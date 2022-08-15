@@ -1,6 +1,6 @@
 ﻿import asyncio
 import datetime
-import psycopg2 as sq
+# import psycopg2 as sq
 from aiogram import types, Dispatcher
 from create_bot import dp,bot
 from data_base import sqlite_db
@@ -9,6 +9,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text
 import base64
+import aiosqlite as aoisq
 
 
 
@@ -30,7 +31,7 @@ async  def cancel_handler(message: types.Message,state:FSMContext):
 
 
 async def Start_registration(message: types.Message,state:FSMContext):
-    if IsRegistration(message.from_user.id)==True:
+    if await IsRegistration(message.from_user.id)==True:
         await message.answer('Вы уже зарегистрированы!')
         return
     await FSMregistration.photo.set()
@@ -66,15 +67,17 @@ async def reg_Nickname_profile(message: types.Message,state: FSMContext):
 
 
 
-def IsRegistration(fromId):
+async def IsRegistration(fromId):
     global base, cur
-    base = sq.connect(dbname='d9882ng2h7srs6',
-                      user='rixdvqeatezwpn',
-                      password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
-                      host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
-    cur=base.cursor()
-    cur.execute(f"SELECT COUNT(*) FROM profile WHERE id='{fromId}'")
-    result=cur.fetchall()
+    # base = sq.connect(dbname='d9882ng2h7srs6',
+    #                   user='rixdvqeatezwpn',
+    #                   password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
+    #                   host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
+    # cur=base.cursor()
+    base =await aoisq.connect("data_base/data_casino_keeper.db")
+    cur=await base.cursor()
+    await cur.execute(f"SELECT COUNT(*) FROM profile WHERE id='{fromId}'")
+    result=await cur.fetchall()
     if result[0] == (1,):
         return True
     return False

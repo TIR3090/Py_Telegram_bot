@@ -25,7 +25,7 @@ async def test_menu_command(message: types.Message):
 
 
 async def Profile_smotr(message: types.Message):
-    if registration.IsRegistration(message.from_user.id)==False:
+    if await registration.IsRegistration(message.from_user.id)==False:
         await message.answer('/reg - Вначале зарегистрируйтесь!')
         return
     await sqlite_db.read_regist_prof(message)
@@ -33,7 +33,7 @@ async def Profile_smotr(message: types.Message):
     
     
 async def menu(message: types.Message):
-    if registration.IsRegistration(message.from_user.id)==False:
+    if await registration.IsRegistration(message.from_user.id)==False:
         await message.answer('/reg - Вначале зарегистрируйтесь!')
         return
     await message.answer('Меню:',reply_markup=client_kb.kb_menu)

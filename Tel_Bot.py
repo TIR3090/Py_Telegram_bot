@@ -15,12 +15,14 @@ from voice_message import voice
 from keyboards import help_kb
 from aiogram.utils.markdown import hbold,hunderline,hcode,hlink
 import psycopg2 as sq
+import aiosqlite as aoisq
 
 
 
 #<---------------------------------------------------------->
 registration.register_handlers_registration(dp)
 commands_list_menu.register_handlers_commands_list_menu(dp)
+# <---------крипта----------->
 bitcoin_valuta_selection_buy.register_handlers_buy_btc_usd_chy(dp)
 bitcoin_valuta_selection_sell.register_handlers_sell_btc_usd_chy(dp)
 ethereum_valuta_selection_buy.register_handlers_buy_eth_usd_chy(dp)
@@ -37,9 +39,12 @@ buy_eth_usd.register_handlers_buy_eth_usd(dp)
 sell_eth_usd.register_handlers_sell_eth_usd(dp)
 info_profile_reply.register_handlers_info_reply(dp)
 cripts_menu.register_handlers_cripts_list_menu(dp)
+#<---------------------------->
 bonus_chy.register_handlers_bonus_chy(dp)
+# <---------Перевод валюты----------->
 translate_p2p_chy.register_handlers_translate_p2p_chy(dp)
 translate_p2p_usd.register_handlers_translate_p2p_usd(dp)
+#<---------------------------->
 voice.register_handlers_voice(dp)
 ls_message.register_handlers_ls_message(dp)
 # <---------Новости----------->
@@ -62,7 +67,7 @@ async def on_startup(_):
     me=await bot.get_me()
     print('\033[33m' +'[~] Bot '+'\033[0m'+'\033[39m' + me.first_name +'\033[0m' + '\033[33m'+' start!'+'\033[0m')
     await bot.send_message(chat_id=DEVELOPER,text='[~] Bot start!')
-    sqlite_db.sql_start()
+    await sqlite_db.sql_start()
     
     
 async def commands_list_menu(dp):

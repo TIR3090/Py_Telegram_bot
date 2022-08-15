@@ -5,25 +5,28 @@ from translate import Translator
 from bs4 import BeautifulSoup
 import asyncio
 from create_bot import dp, bot
-import psycopg2 as sq
+# import psycopg2 as sq
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text
 from handlers import registration
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton, InlineKeyboardMarkup,InlineKeyboardButton
+import aiosqlite as aoisq
 
 
 
 async def info_reply(message: types.Message):
     global base, cur
-    base = sq.connect(dbname='d9882ng2h7srs6',
-                      user='rixdvqeatezwpn',
-                      password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
-                      host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
-    cur=base.cursor()
+    # base = sq.connect(dbname='d9882ng2h7srs6',
+    #                   user='rixdvqeatezwpn',
+    #                   password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
+    #                   host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
+    # cur=base.cursor()
+    base =await aoisq.connect("data_base/data_casino_keeper.db")
+    cur=await base.cursor()
     if message.reply_to_message:
-        cur.execute(f"SELECT * FROM profile WHERE id='{message.reply_to_message.from_user.id}'")
-        for information in cur.fetchall():
+        await cur.execute(f"SELECT * FROM profile WHERE id='{message.reply_to_message.from_user.id}'")
+        for information in await cur.fetchall():
             translate_p2p=InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Перевести',callback_data=f'translate_p2p_{message.from_user.id}_{message.reply_to_message.from_user.id}'))
             await message.answer_photo(information[2],
                                        f'[~~~Профиль~~~]\n\n'
@@ -38,8 +41,8 @@ async def info_reply(message: types.Message):
                                        f'💼 Ξ-$: {"{:0.9f}".format(information[12])}\n\n'
                                        f'[~~~~~~~~~~~~~]',reply_markup=translate_p2p)
     else:
-        cur.execute(f"SELECT * FROM profile WHERE id='{message.from_user.id}'")
-        for information in cur.fetchall():
+        await cur.execute(f"SELECT * FROM profile WHERE id='{message.from_user.id}'")
+        for information in await cur.fetchall():
             await message.answer_photo(information[2],
                                        f'[~~~Профиль~~~]\n\n'
                                        f'🎫 id: {information[0]}\n'

@@ -1,12 +1,13 @@
 import asyncio
 from handlers import registration
-import psycopg2 as sq
+# import psycopg2 as sq
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State,StatesGroup
 from aiogram.dispatcher.filters import Text
 from create_bot import dp, bot
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton, InlineKeyboardMarkup,InlineKeyboardButton
+import aiosqlite as aoisq
 
 
 
@@ -17,7 +18,7 @@ class FSMbuyethereum_usd(StatesGroup):
 
 async def start_buy_usd(callback: types.CallbackQuery,state: FSMContext):
     await callback.message.delete()
-    if registration.IsRegistration(callback.from_user.id)==False:
+    if await registration.IsRegistration(callback.from_user.id)==False:
         await callback.message.answer('/reg - Вначале зарегистрируйтесь!')
         return
     cancel_handler_cripts_buy=InlineKeyboardMarkup(row_width=3).add(InlineKeyboardButton(text='Отмена',callback_data=f'cancel_state_cripts_buy_{callback.from_user.id}'))
@@ -44,25 +45,27 @@ async def buy_eth_usd(message: types.Message,state: FSMContext):
     msg_id=summa_preor.get('delet_msg')
     chat_id=summa_preor.get('chat_id')
     if summa_preor_eth.replace('.','',1).isdigit() or summa_preor_eth.replace(',','',1).isdigit() :
-        if registration.IsRegistration(message.from_user.id)==False:
+        if await registration.IsRegistration(message.from_user.id)==False:
             await message.answer('/reg - Вначале зарегистрируйтесь!')
             return
         global base, cur
-        base = sq.connect(dbname='d9882ng2h7srs6',
-                          user='rixdvqeatezwpn',
-                          password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
-                          host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
-        cur=base.cursor()
-        cur.execute(f"SELECT * FROM cripts")
+        # base = sq.connect(dbname='d9882ng2h7srs6',
+        #                   user='rixdvqeatezwpn',
+        #                   password='60e4ac9ad7bcb8be1b8900f38fc0c70a52a69fb6dcdd59bf553c6262631f54a6',
+        #                   host='ec2-34-242-8-97.eu-west-1.compute.amazonaws.com')
+        # cur=base.cursor()
+        base =await aoisq.connect("data_base/data_casino_keeper.db")
+        cur=await base.cursor()
+        await cur.execute(f"SELECT * FROM cripts")
         json_valute={}
-        for cripts_bd in cur.fetchall():
+        for cripts_bd in await cur.fetchall():
             json_valute[cripts_bd[0]]={
                 'name':cripts_bd[1],
                 'usd':cripts_bd[2],
                 'chy':cripts_bd[3],
             }
-        cur.execute(f"SELECT * FROM profile WHERE id='{message.from_user.id}'")
-        for data_bd in cur.fetchall():
+        await cur.execute(f"SELECT * FROM profile WHERE id='{message.from_user.id}'")
+        for data_bd in await cur.fetchall():
             balance_usd=data_bd[6]
             eth_usd_na_chetu=data_bd[12]
             nickname=data_bd[4]
@@ -75,8 +78,8 @@ async def buy_eth_usd(message: types.Message,state: FSMContext):
         kol_eth_buy_pol=float(summa_preor_eth)/json_valute['15']['usd']
         kol_eth_buy=eth_usd_na_chetu+kol_eth_buy_pol
         balance_usd_v_bd_write=balance_usd-float(summa_preor_eth)
-        cur.execute(f"UPDATE profile SET balance_usd={round(balance_usd_v_bd_write,3)},eth_usd={round(kol_eth_buy,9)},price_buy_eth_usd={json_valute['15']['usd']} WHERE id='{message.from_user.id}'")
-        base.commit()
+        await cur.execute(f"UPDATE profile SET balance_usd={round(balance_usd_v_bd_write,3)},eth_usd={round(kol_eth_buy,9)},price_buy_eth_usd={json_valute['15']['usd']} WHERE id='{message.from_user.id}'")
+        await base.commit()
         await message.delete()
         await message.answer(f"✅ {nickname} приобрел:\nETH в $: {'{:0.9f}'.format(kol_eth_buy_pol)}\nЗа: {summa_preor_eth} $")
         await bot.delete_message(chat_id=chat_id,message_id=msg_id)
