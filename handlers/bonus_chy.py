@@ -22,8 +22,9 @@ async def bonus(message: types.Message):
     cur=await base.cursor()
     await cur.execute(f"SELECT balance_chy,bonus_chy FROM profile WHERE id='{message.from_user.id}'")
     for inform_v_bd in await cur.fetchall():
-        if datetime.datetime.now()<inform_v_bd[1]:
-            ost_time_bonus=inform_v_bd[1].replace(microsecond=0)-datetime.datetime.now().replace(microsecond=0)
+        format = "%Y-%m-%d %H:%M:%S.%f"
+        if datetime.datetime.now()<datetime.datetime.strptime(inform_v_bd[1],format):
+            ost_time_bonus=datetime.datetime.strptime(inform_v_bd[1],format).replace(microsecond=0)-datetime.datetime.now().replace(microsecond=0)
             await message.answer(f'Бонус будет доступен через:\n⌚ {ost_time_bonus}')
         else:
             bonus_nachisl=random.uniform(1000,15001)
