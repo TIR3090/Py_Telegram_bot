@@ -6,7 +6,7 @@ from create_bot import dp, bot
 from aiogram import types, Dispatcher
 from handlers import client, admin, other ,\
     news_cybersport, news_ixbt , casino_spin,ls_message,registration,bonus_chy,commands_list_menu,\
-    img_random,search_wiki,gif_random,info_profile_reply,cripts_menu,translate_p2p_chy,translate_p2p_usd
+    img_random,search_wiki,gif_random,info_profile_reply,cripts_menu,translate_p2p_chy,translate_p2p_usd,save_data_in_docx
 from cripts_buy_and_sell import bitcoin_valuta_selection_buy,buy_btc_chy,buy_btc_usd,cancel_handler_cripts_buy,\
     cancel_handler_cripts_sell,ethereum_valuta_selection_buy,buy_eth_chy,buy_eth_usd,bitcoin_valuta_selection_sell,\
     sell_btc_chy,sell_btc_usd,ethereum_valuta_selection_sell,sell_eth_chy,sell_eth_usd
@@ -40,6 +40,7 @@ sell_eth_usd.register_handlers_sell_eth_usd(dp)
 info_profile_reply.register_handlers_info_reply(dp)
 cripts_menu.register_handlers_cripts_list_menu(dp)
 #<---------------------------->
+save_data_in_docx.register_handlers_save_in_docx(dp)
 bonus_chy.register_handlers_bonus_chy(dp)
 # <---------Перевод валюты----------->
 translate_p2p_chy.register_handlers_translate_p2p_chy(dp)

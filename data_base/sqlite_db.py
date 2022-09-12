@@ -46,7 +46,35 @@ async def sql_start():
                     'price_buy_eth_usd DOUBLE PRECISION DEFAULT 0,'
                     'eth_chy DOUBLE PRECISION DEFAULT 0,'
                     'price_buy_eth_chy DOUBLE PRECISION DEFAULT 0,'
-                    'bonus_chy TIMESTAMP)')
+                    'bonus_chy TIMESTAMP,'
+                    'level DOUBLE PRECISION DEFAULT 0,'
+                    'exp DOUBLE PRECISION DEFAULT 0,'
+                    'exp_next_level DOUBLE PRECISION DEFAULT 0,'
+                    'health DOUBLE PRECISION DEFAULT 0,'
+                    'armor DOUBLE PRECISION DEFAULT 0,'
+                    'mage_resistance DOUBLE PRECISION DEFAULT 0,'
+                    'phisic_resistance DOUBLE PRECISION DEFAULT 0,'
+                    'right_hand DOUBLE PRECISION DEFAULT 0,'
+                    'left_hand DOUBLE PRECISION DEFAULT 0,'
+                    'inventory TEXT)')
+
+
+
+        await cur.execute('CREATE TABLE IF NOT EXISTS crips(id TEXT PRIMARY KEY,'
+                    'name TEXT,'
+                    'exp TEXT DEFAULT 0,'
+                    'level_min DOUBLE PRECISION DEFAULT 0,'
+                    'level_max DOUBLE PRECISION DEFAULT 0,'
+                    'damage_min DOUBLE PRECISION DEFAULT 0,'
+                    'damage_max DOUBLE PRECISION DEFAULT 0,'
+                    'crit_chance DOUBLE PRECISION DEFAULT 0,'
+                    'crit_damage DOUBLE PRECISION DEFAULT 0,'
+                    'health DOUBLE PRECISION DEFAULT 0,'
+                    'armor DOUBLE PRECISION DEFAULT 0,'
+                    'mage_resistance DOUBLE PRECISION DEFAULT 0,'
+                    'phisic_resistance DOUBLE PRECISION DEFAULT 0,'
+                    'chy DOUBLE PRECISION DEFAULT 0,'
+                    'usd DOUBLE PRECISION DEFAULT 0)')
 
 
         await cur.execute('CREATE TABLE IF NOT EXISTS cripts(id TEXT PRIMARY KEY,'
