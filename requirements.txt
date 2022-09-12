@@ -9,3 +9,4 @@ translate
 youtube_search
 gtts
 aiosqlite
+python-docx
