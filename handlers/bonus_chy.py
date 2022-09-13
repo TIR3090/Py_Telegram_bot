@@ -30,7 +30,7 @@ async def bonus(message: types.Message):
             bonus_nachisl=random.uniform(1000,15001)
             balance_v_bd=int(inform_v_bd[0])+round(bonus_nachisl,3)
             bonus_poluch = datetime.datetime.now() + datetime.timedelta(minutes=90)
-            bonus_time_rus=bonus_poluch+ datetime.timedelta(hours=2)
+            bonus_time_rus=bonus_poluch+ datetime.timedelta(hours=3)
             await cur.execute(f"UPDATE profile SET balance_chy='{balance_v_bd}',bonus_chy='{bonus_poluch}' WHERE id='{message.from_user.id}'")
             await base.commit()
             await message.answer(f"[~~~Бонус получен~~~]\n"
