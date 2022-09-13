@@ -10,6 +10,7 @@ from handlers import client, admin, other ,\
 from cripts_buy_and_sell import bitcoin_valuta_selection_buy,buy_btc_chy,buy_btc_usd,cancel_handler_cripts_buy,\
     cancel_handler_cripts_sell,ethereum_valuta_selection_buy,buy_eth_chy,buy_eth_usd,bitcoin_valuta_selection_sell,\
     sell_btc_chy,sell_btc_usd,ethereum_valuta_selection_sell,sell_eth_chy,sell_eth_usd
+from admin_handlers import add_chy_by_id
 from data_base import sqlite_db,cripts_price_change
 from voice_message import voice
 from keyboards import help_kb
@@ -42,6 +43,8 @@ cripts_menu.register_handlers_cripts_list_menu(dp)
 #<---------------------------->
 save_data_in_docx.register_handlers_save_in_docx(dp)
 bonus_chy.register_handlers_bonus_chy(dp)
+# <---------DEVELOPER----------->
+add_chy_by_id.register_handlers_add_chy_developer(dp)
 # <---------Перевод валюты----------->
 translate_p2p_chy.register_handlers_translate_p2p_chy(dp)
 translate_p2p_usd.register_handlers_translate_p2p_usd(dp)
