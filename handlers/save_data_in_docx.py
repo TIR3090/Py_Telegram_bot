@@ -2,7 +2,7 @@
 from aiogram import types, Dispatcher
 import aiosqlite as aoisq
 from config import DEVELOPER
-
+from create_bot import dp, bot
 
 async def save_in_docx(message: types.Message):
     if message.from_user.id == DEVELOPER:
@@ -42,7 +42,7 @@ async def save_in_docx(message: types.Message):
                               f'inventory: {information[26]}\n\n'
                               f'[~~~~~~~~~~~~~]')
         doc.save('data.docx')
-        await message.answer_document(open('data.docx', 'rb'))
+        await bot.send_document(DEVELOPER,open('data.docx', 'rb'))
 
 
 def register_handlers_save_in_docx(dp: Dispatcher):

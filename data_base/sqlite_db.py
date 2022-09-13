@@ -47,7 +47,7 @@ async def sql_start():
                     'eth_chy DOUBLE PRECISION DEFAULT 0,'
                     'price_buy_eth_chy DOUBLE PRECISION DEFAULT 0,'
                     'bonus_chy TIMESTAMP,'
-                    'level DOUBLE PRECISION DEFAULT 0,'
+                    'level INTEGER DEFAULT 0,'
                     'exp DOUBLE PRECISION DEFAULT 0,'
                     'exp_next_level DOUBLE PRECISION DEFAULT 0,'
                     'health DOUBLE PRECISION DEFAULT 0,'
