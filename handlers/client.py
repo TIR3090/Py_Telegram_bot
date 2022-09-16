@@ -1,4 +1,5 @@
-﻿from handlers import registration
+﻿from config import DEVELOPER
+from handlers import registration
 from aiogram import types, Dispatcher
 from data_base import sqlite_db
 from keyboards import admin_kb,client_kb,news_kb,help_kb
@@ -39,10 +40,17 @@ async def menu(message: types.Message):
     await message.answer('Меню:',reply_markup=client_kb.kb_menu)
 
 
+async def replace_bd_server(message: types.Message):
+    if message.from_user.id == DEVELOPER:
+        if document :=message.reply_to_message.document:
+            await document.download(destination_file=f"data_base/data_casino_keeper.db")
+        else:
+            await message.answer('⚠️ ERROR WRONG <b>DataBase</b>!')
 
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(test_menu_command, commands=['menu','меню'])
     dp.register_message_handler(Profile_smotr, commands=['profile','профиль'])
+    dp.register_message_handler(replace_bd_server,commands=['load_db','загрузить_бд'])
     dp.register_message_handler(choosing_a_website_with_news, commands=['news','новости'])
     dp.register_message_handler(choosing_a_website_with_news,Text(equals=['📰 news','📰 новости']))
     dp.register_message_handler(menu, commands=['menu','меню'])

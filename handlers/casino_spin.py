@@ -139,7 +139,7 @@ async def dice_casino(message: types.Message,state: FSMContext):
         ]
         casino = await message.answer_dice('🎰')
         # print(slot_machine_value[casino.dice.value-1])
-        if slot_machine_value[casino.dice.value-1]==slot_machine_value[1] or slot_machine_value[casino.dice.value-1]==slot_machine_value[21] \
+        if slot_machine_value[casino.dice.value-1]==slot_machine_value[0] or slot_machine_value[casino.dice.value-1]==slot_machine_value[21] \
             or slot_machine_value[casino.dice.value-1]==slot_machine_value[42]:
             stavka_ucht=float(stavka_sdel.replace(',','.')) * 3.5
             itog=(balance_v_bd-float(stavka_sdel.replace(',','.')))+stavka_ucht
@@ -149,7 +149,7 @@ async def dice_casino(message: types.Message,state: FSMContext):
             await cur.execute(f"UPDATE profile SET balance_chy='{round(itog,3)}' WHERE id='{message.from_user.id}'")
             await base.commit()
         elif slot_machine_value[casino.dice.value-1]==slot_machine_value[63]:
-            stavka_ucht=float(stavka_sdel.replace(',','.')) * 3.5
+            stavka_ucht=float(stavka_sdel.replace(',','.')) * 7.5 #jackpot
             itog=(balance_v_bd-float(stavka_sdel.replace(',','.')))+stavka_ucht
             await asyncio.sleep(2)
             # await message.reply(slot_machine_value[casino.dice.value-1])

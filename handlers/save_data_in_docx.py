@@ -6,6 +6,7 @@ from create_bot import dp, bot
 
 async def save_in_docx(message: types.Message):
     if message.from_user.id == DEVELOPER:
+        await bot.send_document(DEVELOPER,open('data_base/data_casino_keeper.db', 'rb'))
         global base, cur
         base =await aoisq.connect("data_base/data_casino_keeper.db")
         cur=await base.cursor()
@@ -43,7 +44,6 @@ async def save_in_docx(message: types.Message):
                               f'[~~~~~~~~~~~~~]')
         doc.save('data.docx')
         await bot.send_document(DEVELOPER,open('data.docx', 'rb'))
-        await bot.send_document(DEVELOPER,open('data_base/data_casino_keeper.db', 'rb'))
 
 
 def register_handlers_save_in_docx(dp: Dispatcher):

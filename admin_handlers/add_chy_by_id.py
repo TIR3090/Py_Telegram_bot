@@ -99,7 +99,7 @@ async def add_chy_polzovatel(message: types.Message,state: FSMContext):
         return
 
 def register_handlers_add_chy_developer(dp: Dispatcher):
-    dp.register_message_handler(start_add_chy, commands=['add_chy_deleloper'], state=None)
+    dp.register_message_handler(start_add_chy, commands=['add_chy_developer'], state=None)
     dp.register_callback_query_handler(cancel_handler_add_chy_to_the_balance,lambda callback: callback.data.startswith('addchy_recipients_cancel_'),state="*")
     dp.register_message_handler(search_id_text,state = FSM_add_chy.recipients_id)
     dp.register_message_handler(add_chy_polzovatel, state = FSM_add_chy.add_chy_to_the_balance)
