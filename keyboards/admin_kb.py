@@ -10,7 +10,7 @@ kb_admin_load_db=KeyboardButton('/load_db')
 
 
 kb_admin_tools=ReplyKeyboardMarkup(resize_keyboard=True)
-kb_admin_tools.add(kb_admin_chy_add)
+kb_admin_tools.add(kb_admin_chy_add).add(kb_admin_save_db).add(kb_admin_load_db)
 
 
 button_case_admin=ReplyKeyboardMarkup(resize_keyboard=True).add(button_load)\
