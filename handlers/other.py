@@ -13,7 +13,7 @@ def search_youtube(text):
 @dp.inline_handler()
 async def inline_handler(query: types.InlineQuery):
     text=query.query or 'echo'
-    if text[:3] != 'gif' and text[:3] != 'гиф' and text[:6] != 'anime_' and text[:6] != 'аниме_':
+    if text[:3] != 'gif' and text[:3] != 'гиф'and text[:5] != 'gifer' and text[:6] != 'anime_' and text[:6] != 'аниме_':
         links=search_youtube(text)
         articles=[types.InlineQueryResultArticle(
             id = hashlib.md5(f'{link["id"]}'.encode()).hexdigest(),
@@ -25,7 +25,7 @@ async def inline_handler(query: types.InlineQuery):
 
         ) for link in links]
         await query.answer(articles,cache_time=60,is_personal=True)
-    elif text[:6] != 'anime_' and text[:6] != 'аниме_':
+    elif text[:6] != 'anime_' and text[:6] != 'аниме_'and text[:5] != 'gifer':
         tenor_api_key='AIzaSyBOcqMmqBT9JD1sLs5y7K-9Q6KRbMcci3g'
         ckey='py teleg bot'
         response=requests.get(f'https://tenor.googleapis.com/v2/search?q={text}&key={tenor_api_key}&client_key={ckey}&limit=100000')
@@ -34,6 +34,15 @@ async def inline_handler(query: types.InlineQuery):
             id=link['id'],
             thumb_url=link['media_formats']['tinygifpreview']['url'],
             gif_url=link['media_formats']['loopedmp4']['url'])for link in links]
+
+        await query.answer(articles,cache_time=60,is_personal=True)
+    elif text[:6] != 'anime_' and text[:6] != 'аниме_':
+        response=requests.get(f'https://gifer.com/api/search/media?q={text[5:]}&limit=50&skip=0&include=creator,tags.tag')
+        links=response.json()
+        articles=[types.InlineQueryResultGif(
+            id=link['id'],
+            thumb_url=f"https://i.gifer.com/fetch/w300-preview/{link['file']['path']}.gif",
+            gif_url=f"https://gifer.com/ru/{link['_id']}")for link in links]
 
         await query.answer(articles,cache_time=60,is_personal=True)
     else:

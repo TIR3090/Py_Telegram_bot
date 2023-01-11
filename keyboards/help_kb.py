@@ -5,7 +5,7 @@ from keyboards import client_kb
 
 
 inkb_help_list_1=InlineKeyboardMarkup(row_width=3).add(InlineKeyboardButton(text='<-',callback_data='<-help_list2_left'),InlineKeyboardButton(text='Команды @',callback_data='help_list_midl'),InlineKeyboardButton(text='->',callback_data='help_list2_right->'))
-inkib_help_list_midl=InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='YouTube',switch_inline_query_current_chat=''),InlineKeyboardButton(text='Tenor gif',switch_inline_query_current_chat='gif ')).add(InlineKeyboardButton(text='Anime',switch_inline_query_current_chat='anime_ ')).add(InlineKeyboardButton(text='вернуться',callback_data='back_help_list_1'))
+inkib_help_list_midl=InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='YouTube',switch_inline_query_current_chat=''),InlineKeyboardButton(text='Tenor gif',switch_inline_query_current_chat='gif '),InlineKeyboardButton(text='Gifer',switch_inline_query_current_chat='gifer ')).add(InlineKeyboardButton(text='Anime',switch_inline_query_current_chat='anime_ ')).add(InlineKeyboardButton(text='вернуться',callback_data='back_help_list_1'))
 inkb_help_list_2=InlineKeyboardMarkup(row_width=3).add(InlineKeyboardButton(text='<-',callback_data='<-help_list1_left'),InlineKeyboardButton(text='Команды @',callback_data='help_list_midl'),InlineKeyboardButton(text='->',callback_data='help_list1_right->'))
 inkb_help_list_3=InlineKeyboardMarkup(row_width=3).add(InlineKeyboardButton(text='<-',callback_data='<-help_list3_left'),InlineKeyboardButton(text='Команды @',callback_data='help_list_midl'),InlineKeyboardButton(text='->',callback_data='help_list3_right->'))
 
